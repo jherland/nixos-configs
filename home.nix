@@ -7,13 +7,20 @@ let
   name = "Johan Herland";
   email = "johan@herland.net";
   username = "jherland";
+  hmdir = "~/code/home-manager";
 in
 {
+  home.stateVersion = "19.09";
+
+  home.packages = [
+  ];
+
+  manual.html.enable = true;
+
   programs = {
-    # Have home-manager manage itself.
     home-manager = {
       enable = true;
-      path = "~/code/home-manager";
+      path = "${hmdir}";
     };
 
     git = {
@@ -72,20 +79,38 @@ in
         };
       };
     };
+
+    bash = {
+      enable = true;
+      enableAutojump = true;
+      historyControl = ["ignoredups"];
+      initExtra = ''
+        source ${hmdir}/bash/acd_func.sh
+        export PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \[\033[01;33m\](%s)\[\033[00m\]") \$ '
+      '';
+      sessionVariables = {
+        EDITOR = "vim";
+        GIT_PS1_SHOWDIRTYSTATE = 1;
+#       PS1 = "\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\] \\[\\033[01;34m\\]\\w\\[\\033[00m\\]$(__git_ps1 \" \\[\\033[01;33m\\](%s)\\[\\033[00m\\]\") \\$ ";
+      };
+      shellAliases = {
+          ls = "ls --color=auto";
+          d = "ls -alF --color=auto";
+          nano = "nano -w";
+          top = "htop";
+          diff = "git diff --no-index";
+          dmesg = "dmesg --human";
+          cat = "bat";
+          vi = "vim";
+      };
+    };
+
+    bat.enable = true;
   };
 
 #  # Allow fontconfig to discover fonts and configurations installed through home.packages and nix-env
 #  fonts.fontconfig.enable = true;
 #
 #  # The set of packages to appear in the user environment
-#  home.packages = [ ];
 #
-#  home.stateVersion = "19.09";
-#
-#  manual.html.enable = true;
-#
-#  programs.bash = {
-#    enable = true;
-#    enableAutoJump = true;
-#    historyControl = "ignoredups";
 }
