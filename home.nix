@@ -86,12 +86,9 @@ in
       historyControl = ["ignoredups"];
       initExtra = ''
         source ${hmdir}/bash/acd_func.sh
-        # export PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \[\033[01;33m\](%s)\[\033[00m\]") \$ '
       '';
       sessionVariables = {
         EDITOR = "vim";
-        # GIT_PS1_SHOWDIRTYSTATE = 1;
-        # PS1 = "\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\] \\[\\033[01;34m\\]\\w\\[\\033[00m\\]$(__git_ps1 \" \\[\\033[01;33m\\](%s)\\[\\033[00m\\]\") \\$ ";
       };
       shellAliases = {
           ls = "ls --color=auto";
@@ -108,6 +105,7 @@ in
     starship = {
       enable = true;
       settings = {
+        # See https://starship.rs/config for available config directives
         add_newline = false;
         prompt_order = [
           "username"
@@ -142,7 +140,6 @@ in
         hostname.ssh_only = false;
         hostname.style = "bold green";
         directory.truncation_length = 10;
-        # directory.truncate_to_repo = false;
         directory.style = "bold blue";
         git_branch.symbol = " ";
         git_branch.style = "bold yellow";
@@ -156,10 +153,8 @@ in
         nix_shell.impure_msg = "✖";
         nix_shell.pure_msg = "✔";
         nix_shell.style = "cyan";
-        # cmd_duration.min_time = 10;
         cmd_duration.prefix = "🕙";
         cmd_duration.style = "bold black";
-        # line_break.disabled = true;
         memory_usage.disabled = false;
         memory_usage.show_swap = false;
         memory_usage.threshold = 75;
@@ -194,7 +189,6 @@ in
       enable = true;
       matchBlocks = {
         phi = {
-          # host = "phi";
           hostname = "phi.herland";
           user = "johan";
         };
@@ -204,7 +198,4 @@ in
 
 #  # Allow fontconfig to discover fonts and configurations installed through home.packages and nix-env
 #  fonts.fontconfig.enable = true;
-#
-#  # The set of packages to appear in the user environment
-#
 }
