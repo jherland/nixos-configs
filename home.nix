@@ -106,6 +106,36 @@ in
     };
 
     bat.enable = true;
+
+    firefox.enable = true;
+
+    htop = {
+      enable = true;
+      cpuCountFromZero = true;
+      detailedCpuTime = true;
+      headerMargin = false;
+      highlightBaseName = true;
+      shadowOtherUsers = true;
+      showProgramPath = false;
+      showThreadNames = true;
+      meters = {
+        left = [ "CPU" "Memory" "Swap" "Battery" "Blank" "Tasks" "LoadAverage" "Uptime" ];
+        right = ["AllCPUs"];
+      };
+    };
+
+    man.enable = true;
+
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        phi = {
+          # host = "phi";
+          hostname = "phi.herland";
+          user = "johan";
+        };
+      };
+    };
   };
 
 #  # Allow fontconfig to discover fonts and configurations installed through home.packages and nix-env
