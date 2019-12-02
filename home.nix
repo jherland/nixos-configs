@@ -10,18 +10,50 @@ let
   hmdir = "~/code/home-manager";
 in
 {
-  home.stateVersion = "19.09";
+  # Allow fontconfig to discover fonts and configurations installed through home.packages and nix-env
+  fonts.fontconfig.enable = true;
 
-  home.packages = [
-  ];
+  home = {
+    language.base = "C.UTF-8";
+
+    packages = [
+      pkgs.vivaldi
+    ];
+
+    sessionVariables = {
+      EDITOR = "vim";
+      LANG = "C.UTF-8";
+      LC_ALL = "C.UTF-8";
+    };
+
+    stateVersion = "19.09";
+  };
 
   manual.html.enable = true;
 
   programs = {
-    home-manager = {
+    bash = {
       enable = true;
-      path = "${hmdir}";
+      enableAutojump = true;
+      historyControl = ["ignoredups"];
+      initExtra = ''
+        source ${hmdir}/bash/acd_func.sh
+      '';
+      shellAliases = {
+          ls = "ls --color=auto";
+          d = "ls -alF --color=auto";
+          nano = "nano -w";
+          top = "htop";
+          diff = "git diff --no-index";
+          dmesg = "dmesg --human";
+          cat = "bat";
+          vi = "vim";
+      };
     };
+
+    bat.enable = true;
+
+    firefox.enable = true;
 
     git = {
       enable = true;
@@ -80,25 +112,42 @@ in
       };
     };
 
-    bash = {
+    home-manager = {
       enable = true;
-      enableAutojump = true;
-      historyControl = ["ignoredups"];
-      initExtra = ''
-        source ${hmdir}/bash/acd_func.sh
-      '';
-      sessionVariables = {
-        EDITOR = "vim";
+      path = "${hmdir}";
+    };
+
+    htop = {
+      enable = true;
+      cpuCountFromZero = true;
+      detailedCpuTime = true;
+      headerMargin = false;
+      highlightBaseName = true;
+      shadowOtherUsers = true;
+      showProgramPath = false;
+      showThreadNames = true;
+      meters = {
+        left = [ "CPU" "Memory" "Swap" "Battery" "Blank" "Tasks" "LoadAverage" "Uptime" ];
+        right = ["AllCPUs"];
       };
-      shellAliases = {
-          ls = "ls --color=auto";
-          d = "ls -alF --color=auto";
-          nano = "nano -w";
-          top = "htop";
-          diff = "git diff --no-index";
-          dmesg = "dmesg --human";
-          cat = "bat";
-          vi = "vim";
+    };
+
+    man.enable = true;
+
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      withPython3 = true;
+    };
+
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        phi = {
+          hostname = "phi.herland";
+          user = "johan";
+        };
       };
     };
 
@@ -164,38 +213,30 @@ in
       };
     };
 
-    bat.enable = true;
-
-    firefox.enable = true;
-
-    htop = {
+    tmux = {
       enable = true;
-      cpuCountFromZero = true;
-      detailedCpuTime = true;
-      headerMargin = false;
-      highlightBaseName = true;
-      shadowOtherUsers = true;
-      showProgramPath = false;
-      showThreadNames = true;
-      meters = {
-        left = [ "CPU" "Memory" "Swap" "Battery" "Blank" "Tasks" "LoadAverage" "Uptime" ];
-        right = ["AllCPUs"];
-      };
+      aggressiveResize = true;
+      clock24 = true;
+      historyLimit = 10000;
+      shortcut = "a";
+      # terminal = "screen-256color";
     };
 
-    man.enable = true;
-
-    ssh = {
-      enable = true;
-      matchBlocks = {
-        phi = {
-          hostname = "phi.herland";
-          user = "johan";
-        };
-      };
-    };
+#     vim = {
+#       enable = true;
+#       plugins = [ pkgs.vimPlugins.spacevim ];
+#     };
   };
 
-#  # Allow fontconfig to discover fonts and configurations installed through home.packages and nix-env
-#  fonts.fontconfig.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+  };
+
+  # services.network-manager-applet.enable = true;
+
+  # xsession = {
+      # enable = true;
+      # numlock.enable = true;
+  # };
 }
