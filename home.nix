@@ -67,7 +67,7 @@ in
         merge.conflictstyle = "diff3";
         push.default = "tracking";
         rebase.autosquash = true;
-#       rerere.enabled = true;
+        # rerere.enabled = true;
         sendemail = {
           signedoffbycc = true;
           confirm = "always";
@@ -86,12 +86,12 @@ in
       historyControl = ["ignoredups"];
       initExtra = ''
         source ${hmdir}/bash/acd_func.sh
-        export PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \[\033[01;33m\](%s)\[\033[00m\]") \$ '
+        # export PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " \[\033[01;33m\](%s)\[\033[00m\]") \$ '
       '';
       sessionVariables = {
         EDITOR = "vim";
-        GIT_PS1_SHOWDIRTYSTATE = 1;
-#       PS1 = "\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\] \\[\\033[01;34m\\]\\w\\[\\033[00m\\]$(__git_ps1 \" \\[\\033[01;33m\\](%s)\\[\\033[00m\\]\") \\$ ";
+        # GIT_PS1_SHOWDIRTYSTATE = 1;
+        # PS1 = "\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\] \\[\\033[01;34m\\]\\w\\[\\033[00m\\]$(__git_ps1 \" \\[\\033[01;33m\\](%s)\\[\\033[00m\\]\") \\$ ";
       };
       shellAliases = {
           ls = "ls --color=auto";
@@ -102,6 +102,70 @@ in
           dmesg = "dmesg --human";
           cat = "bat";
           vi = "vim";
+      };
+    };
+
+    starship = {
+      enable = true;
+      settings = {
+        add_newline = false;
+        prompt_order = [
+          "username"
+          "hostname"
+          "kubernetes"
+          "directory"
+          "git_branch"
+          "git_state"
+          "git_status"
+          "package"
+          "dotnet"
+          "golang"
+          "java"
+          "nodejs"
+          "python"
+          "ruby"
+          "rust"
+          "nix_shell"
+          "conda"
+          "aws"
+          "env_var"
+          "cmd_duration"
+          "time"
+          "line_break"
+          "jobs"
+          "battery"
+          "memory_usage"
+          "character"
+        ];
+        username.show_always = true;
+        username.style_user = "bold green";
+        hostname.ssh_only = false;
+        hostname.style = "bold green";
+        directory.truncation_length = 10;
+        # directory.truncate_to_repo = false;
+        directory.style = "bold blue";
+        git_branch.symbol = " ";
+        git_branch.style = "bold yellow";
+        git_state.style = "bold yellow";
+        git_status.style = "bold yellow";
+        git_status.prefix = "";
+        git_status.suffix = " ";
+        python.symbol = "🐍";
+        python.style = "cyan";
+        nix_shell.use_name = true;
+        nix_shell.impure_msg = "✖";
+        nix_shell.pure_msg = "✔";
+        nix_shell.style = "cyan";
+        # cmd_duration.min_time = 10;
+        cmd_duration.prefix = "🕙";
+        cmd_duration.style = "bold black";
+        # line_break.disabled = true;
+        memory_usage.disabled = false;
+        memory_usage.show_swap = false;
+        memory_usage.threshold = 75;
+        memory_usage.symbol = "🐏";
+        memory_usage.style = "bold red";
+        character.use_symbol_for_status = true;
       };
     };
 
