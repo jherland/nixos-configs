@@ -14,6 +14,11 @@ in
   fonts.fontconfig.enable = true;
 
   home = {
+    # Dotfiles for the home root, ~/
+    file = {
+      ".SpaceVim.d/init.toml".source = ./init.toml;
+    };
+
     language.base = "C.UTF-8";
 
     packages = with pkgs; [
