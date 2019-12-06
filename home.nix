@@ -69,7 +69,7 @@ in
       userEmail = "${email}";
       aliases = {
         glog = "log --graph --decorate --color --oneline";
-        olog = "log --graph --decorate --color --oneline origin..";
+        olog = "log --graph --decorate --color --oneline --boundary HEAD@{u}..";
         staged = "diff --staged";
         find= "!git ls-files | grep";
         branches = "!git --no-pager log --branches --no-walk --date-order --reverse --format='%C(auto)%h%d %Cred%cr%Creset %s'";
