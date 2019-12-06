@@ -22,35 +22,48 @@
     statusline_inactive_separator = "bar"
     buffer_index_type = 4
     windows_index_type = 3
-    enable_tabline_filetype_icon = true
+    # enable_tabline_filetype_icon = true
+    # enable_tabline_ft_icon = true
     enable_os_fileformat_icon = true
     enable_statusline_display_mode = true
+    enable_statusline_mode = true
 
     # jherland's additions
-    relativenumber = false
+    # enable_debug = true
     default_indent = 4
+    expandtab = true
+    # relativenumber = false
     max_column = 80
-    sidebar_width = 30
-    statusline_unicode_symbols = false
+    # sidebar_width = 30
+    enable_powerline_fonts = true
+    statusline_unicode_symbols = true
     # statusline_right_sections 'whitespace'
     error_symbol = 'X'
     warning_symbol = '!'
     info_symbol = 'i'
     github_username = 'jherland'
-    enable_vimfiler_gitstatus = false
-    enable_vimfiler_filetypeicon = false
+    enable_vimfiler_gitstatus = true
+    enable_vimfiler_filetypeicon = true
+    # autocomplete_method = "asyncomplete"
+    # enable_neomake = 0
+    # enable_ale = 1
+    # enable_ycm = 1
+    filetree_direction = 'left'
+    auto_disable_touchpad = true
+
+    disabled_plugins = []
+    custom_plugins = []
 
 # Enable autocomplete layer
 [[layers]]
 name = 'autocomplete'
-autocomplete_method = "asyncomplete"
 auto-completion-return-key-behavior = "complete"
 auto-completion-tab-key-behavior = "cycle"
 
-[[layers]]
-name = 'shell'
-default_position = 'left'
-default_height = 30
+# [[layers]]
+# name = 'shell'
+# default_position = 'left'
+# default_height = 30
 
 [[layers]]
 name = 'VersionControl'
@@ -67,8 +80,8 @@ name = "denite"
 [[layers]]
 name = "default"
 
-[[layers]]
-name = "cscope"
+# [[layers]]
+# name = "cscope"
 
 [[layers]]
 name = "lang#c"
