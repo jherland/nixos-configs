@@ -11,15 +11,15 @@
     # set spacevim theme. by default colorscheme layer is not loaded,
     # if you want to use more colorscheme, please load the colorscheme
     # layer
-    colorscheme = "gruvbox"
-    background = "dark"
+    colorscheme = 'gruvbox'
+    background = 'dark'
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
     enable_guicolors = true
     # Disable statusline separator, if you want to use other value, please
     # install nerd fonts
-    statusline_separator = "arrow"
-    statusline_inactive_separator = "bar"
+    statusline_separator = 'arrow'
+    statusline_inactive_separator = 'bar'
     buffer_index_type = 4
     windows_index_type = 3
     # enable_tabline_filetype_icon = true
@@ -34,22 +34,25 @@
     expandtab = true
     # relativenumber = false
     max_column = 80
-    # sidebar_width = 30
+    sidebar_width = 40
     enable_powerline_fonts = true
-    statusline_unicode_symbols = true
+    statusline_unicode_symbols = false
     # statusline_right_sections 'whitespace'
     error_symbol = 'X'
     warning_symbol = '!'
     info_symbol = 'i'
     github_username = 'jherland'
+    enable_vimfiler_welcome = true
     enable_vimfiler_gitstatus = true
     enable_vimfiler_filetypeicon = true
-    # autocomplete_method = "asyncomplete"
+    filetree_direction = 'right'
+    autocomplete_method = 'asyncomplete'
     # enable_neomake = 0
     # enable_ale = 1
     # enable_ycm = 1
-    filetree_direction = 'left'
     auto_disable_touchpad = true
+    bootstrap_before = 'myspacevim#before'
+    bootstrap_after = 'myspacevim#after'
 
     disabled_plugins = []
     custom_plugins = []
@@ -57,8 +60,8 @@
 # Enable autocomplete layer
 [[layers]]
 name = 'autocomplete'
-auto-completion-return-key-behavior = "complete"
-auto-completion-tab-key-behavior = "cycle"
+auto-completion-return-key-behavior = 'complete'
+auto-completion-tab-key-behavior = 'cycle'
 
 # [[layers]]
 # name = 'shell'
@@ -72,23 +75,23 @@ name = 'VersionControl'
 name = 'git'
 
 [[layers]]
-name = "tools"
+name = 'tools'
 
 [[layers]]
-name = "denite"
+name = 'denite'
 
 [[layers]]
-name = "default"
+name = 'default'
 
 # [[layers]]
-# name = "cscope"
+# name = 'cscope'
 
 [[layers]]
-name = "lang#c"
+name = 'lang#c'
 
 [[layers]]
-name = "lang#haskell"
+name = 'lang#haskell'
 
 [[layers]]
-name = "lang#python"
-format-on-save = true
+name = 'lang#python'
+format-on-save = false

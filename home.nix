@@ -16,7 +16,7 @@ in
   home = {
     # Dotfiles for the home root, ~/
     file = {
-      ".SpaceVim.d/init.toml".source = ./init.toml;
+      ".SpaceVim.d".source = ./SpaceVim.d;
     };
 
     language.base = "C.UTF-8";
