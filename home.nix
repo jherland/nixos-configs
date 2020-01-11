@@ -108,6 +108,7 @@ in
         merge.conflictstyle = "diff3";
         push.default = "tracking";
         rebase.autosquash = true;
+        rebase.autostash = true;
         # rerere.enabled = true;
         sendemail = {
           signedoffbycc = true;
