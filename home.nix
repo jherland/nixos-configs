@@ -17,6 +17,7 @@ in
     # Dotfiles for the home root, ~/
     file = {
       ".SpaceVim.d".source = ./SpaceVim.d;
+      ".SpaceVim.d".onChange = "rm -rf ~/.cache/SpaceVim/conf";
     };
 
     language.base = "C.UTF-8";
