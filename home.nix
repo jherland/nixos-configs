@@ -66,6 +66,7 @@ in
 
     git = {
       enable = true;
+      package = pkgs.gitAndTools.gitFull;
       userName = "${name}";
       userEmail = "${email}";
       aliases = {
