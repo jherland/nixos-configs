@@ -31,8 +31,6 @@ in
 
     sessionVariables = {
       EDITOR = "vim";
-      LANG = "C.UTF-8";
-      LC_ALL = "C.UTF-8";
     };
 
     stateVersion = "19.09";
@@ -56,7 +54,6 @@ in
           diff = "git diff --no-index";
           dmesg = "dmesg --human";
           cat = "bat";
-          # vi = "vim";
       };
     };
 
