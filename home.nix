@@ -162,6 +162,11 @@ in
           hostname = "phi.herland";
           user = "johan";
         };
+        rdbuild = {
+          hostname = "rdbuild25.rd.cisco.com";
+          forwardAgent = true;
+          serverAliveInterval = 60;
+        };
       };
     };
 
