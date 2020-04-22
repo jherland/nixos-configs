@@ -158,14 +158,19 @@ in
     ssh = {
       enable = true;
       matchBlocks = {
-        phi = {
-          hostname = "phi.herland";
-          user = "johan";
+        jherland = {
+          hostname = "jherland.rd.cisco.com";
+          forwardAgent = true;
+          serverAliveInterval = 60;
         };
         rdbuild = {
           hostname = "rdbuild25.rd.cisco.com";
           forwardAgent = true;
           serverAliveInterval = 60;
+        };
+        phi = {
+          hostname = "phi.herland";
+          user = "johan";
         };
       };
     };
