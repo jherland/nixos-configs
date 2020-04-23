@@ -121,6 +121,7 @@ in
           smtpuser = "jherland@gmail.com";
         };
       };
+      ignores = [ "/.vscode/" ];
     };
 
     home-manager = {
