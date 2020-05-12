@@ -26,7 +26,14 @@ in
       # fonts
       powerline-fonts
 
-      vivaldi
+      (vivaldi.override {
+        proprietaryCodecs = true;
+        enableWidevine = true;
+      })
+      vivaldi-ffmpeg-codecs
+      vivaldi-widevine
+
+      vscode
     ];
 
     sessionVariables = {
