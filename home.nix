@@ -141,6 +141,7 @@ in
       cpuCountFromZero = true;
       detailedCpuTime = true;
       headerMargin = false;
+      hideUserlandThreads = true;
       highlightBaseName = true;
       shadowOtherUsers = true;
       showProgramPath = false;
