@@ -188,7 +188,7 @@ in
       showThreadNames = true;
       meters = {
         left = [ "CPU" "Memory" "Swap" "Battery" "Blank" "Tasks" "LoadAverage" "Uptime" ];
-        right = ["AllCPUs"];
+        right = ["AllCPUs2"];
       };
     };
 
