@@ -214,6 +214,11 @@ in
           forwardAgent = true;
           serverAliveInterval = 60;
         };
+        jherland-nix = {
+          hostname = "jherland-nix.rd.cisco.com";
+          forwardAgent = true;
+          serverAliveInterval = 60;
+        };
         rdbuild = {
           hostname = "rdbuild25.rd.cisco.com";
           forwardAgent = true;
