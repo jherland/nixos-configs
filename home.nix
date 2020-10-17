@@ -238,6 +238,10 @@ in
           hostname = "phi.herland";
           user = "johan";
         };
+        sigma = {
+          hostname = "sigma.herland";
+          user = "root";
+        };
       };
     };
 
