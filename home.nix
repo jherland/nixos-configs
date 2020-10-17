@@ -11,7 +11,7 @@ let
 in
 {
   nixpkgs.overlays = [
-    (import "${builtins.fetchTarball https://github.com/vlaci/openconnect-sso/archive/master.tar.gz}/overlay.nix")
+    (import "${builtins.fetchGit https://github.com/jherland/openconnect-sso}/overlay.nix")
   ];
 
   # Allow fontconfig to discover fonts and configurations installed through home.packages and nix-env
@@ -22,6 +22,8 @@ in
     file = {
       ".SpaceVim.d".source = ./SpaceVim.d;
       ".SpaceVim.d".onChange = "rm -rf ~/.cache/SpaceVim/conf";
+      ".ssh/kill-ssh-control-masters.sh".source = ./kill-ssh-control-masters.sh;
+      ".config/openconnect-sso".source = ./openconnect-sso;
     };
 
     language.base = "C.UTF-8";
