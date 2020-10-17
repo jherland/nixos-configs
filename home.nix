@@ -229,6 +229,11 @@ in
           forwardAgent = true;
           serverAliveInterval = 60;
         };
+        lys-git = {
+          hostname = "lys-git.cisco.com";
+          forwardAgent = true;
+          serverAliveInterval = 60;
+        };
         phi = {
           hostname = "phi.herland";
           user = "johan";
