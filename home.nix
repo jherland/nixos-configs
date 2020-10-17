@@ -10,6 +10,10 @@ let
   hmdir = "~/code/home-manager";
 in
 {
+  nixpkgs.overlays = [
+    (import "${builtins.fetchTarball https://github.com/vlaci/openconnect-sso/archive/master.tar.gz}/overlay.nix")
+  ];
+
   # Allow fontconfig to discover fonts and configurations installed through home.packages and nix-env
   fonts.fontconfig.enable = true;
 
@@ -23,6 +27,8 @@ in
     language.base = "C.UTF-8";
 
     packages = with pkgs; [
+      openconnect-sso
+
       powerline-fonts
 
       (vivaldi.override {
