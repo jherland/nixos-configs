@@ -212,7 +212,7 @@ in
     ssh = {
       enable = true;
       controlMaster = "auto";
-      controlPersist = "10m";
+      controlPersist = "no";  # "10m";
       matchBlocks = {
         jherland = {
           hostname = "jherland.rd.cisco.com";
