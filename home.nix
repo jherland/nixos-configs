@@ -23,7 +23,6 @@ in
     language.base = "C.UTF-8";
 
     packages = with pkgs; [
-      # fonts
       powerline-fonts
 
       (vivaldi.override {
