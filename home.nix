@@ -219,7 +219,7 @@ in
           serverAliveInterval = 60;
         };
         rdbuild = {
-          hostname = "rdbuild25.rd.cisco.com";
+          hostname = "rdbuild31.rd.cisco.com";
           forwardAgent = true;
           serverAliveInterval = 60;
         };
