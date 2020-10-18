@@ -11,7 +11,7 @@ let
 in
 {
   nixpkgs.overlays = [
-    (import "${builtins.fetchGit https://github.com/jherland/openconnect-sso}/overlay.nix")
+    (import "${builtins.fetchTarball https://github.com/jherland/openconnect-sso/archive/develop.tar.gz}/overlay.nix")
   ];
 
   # Allow fontconfig to discover fonts and configurations installed through home.packages and nix-env
