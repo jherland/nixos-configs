@@ -1,8 +1,9 @@
+on_disconnect = "~/.ssh/kill-ssh-control-masters.sh"
+
 [default_profile]
 address = "https://ams-vpn-cluster.cisco.com/ssl"
 user_group = ""
 name = ""
-on_disconnect = "~/.ssh/kill-ssh-control-masters.sh"
 
 [auto_fill_rules]
 [[auto_fill_rules."https://*"]]
