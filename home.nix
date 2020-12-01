@@ -66,15 +66,15 @@ in
             eDP-1 = {
               primary = true;
               mode = "1920x1080";
-              position = "1920x1080";
+              position = "1920x2160";
             };
             DP-1-1 = {
               mode = "1920x1080";
-              position = "0x1080";
+              position = "1920x2160";
             };
             DP-1-2 = {
               mode = "3840x2160";
-              position = "3840x0";
+              position = "0x0";
             };
           };
         };
