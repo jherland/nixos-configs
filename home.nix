@@ -33,6 +33,8 @@ in
 
       powerline-fonts
 
+      spotify
+
       (vivaldi.override {
         proprietaryCodecs = true;
         enableWidevine = true;
