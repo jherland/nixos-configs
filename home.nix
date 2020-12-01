@@ -212,7 +212,7 @@ in
     };
 
     ssh = {
-      enable = true;
+      enable = false;
       controlMaster = "auto";
       controlPersist = "no";  # "10m";
       matchBlocks = {
