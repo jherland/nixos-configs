@@ -1,7 +1,7 @@
 on_disconnect = "~/.ssh/kill-ssh-control-masters.sh"
 
 [default_profile]
-address = "https://ams-vpn-cluster.cisco.com/ssl"
+address = "https://aer01-hda2-vpn-cluster-4.cisco.com/ssl"
 user_group = ""
 name = ""
 
