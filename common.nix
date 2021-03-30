@@ -108,6 +108,7 @@ in
           };
         };
         merge.conflictstyle = "diff3";
+        pull.rebase = true;
         push.default = "tracking";
         rebase.autosquash = true;
         rebase.autostash = true;
