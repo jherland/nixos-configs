@@ -18,6 +18,9 @@
     gwenview
     vlc
 
+    # KVM software
+    barrier
+
     # Misc.
     ark
     libreoffice
