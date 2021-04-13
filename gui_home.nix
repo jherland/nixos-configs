@@ -1,5 +1,8 @@
 { pkgs, ...}:
 
+let
+  unstablePkgs = import <nixos-unstable> {};
+in
 {
   home.packages = with pkgs; [
     # Media consumption
@@ -8,7 +11,7 @@
     # Media production
     audacity
     gimp-with-plugins
-    musescore
+    unstablePkgs.musescore
     obs-studio
   ];
 
