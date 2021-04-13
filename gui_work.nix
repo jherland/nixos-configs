@@ -1,15 +1,10 @@
 { pkgs, ...}:
 
-let
-  openconnect-sso-src = builtins.fetchTarball "https://github.com/vlaci/openconnect-sso/archive/master.tar.gz";
-  unstablePkgs = import <nixos-unstable> {
-    overlays = [
-        (import "${openconnect-sso-src}/overlay.nix")
-    ];
-  };
-
-in
 {
+  nixpkgs.overlays = [
+    (import "${builtins.fetchTarball https://github.com/vlaci/openconnect-sso/archive/master.tar.gz}/overlay.nix")
+  ];
+
   home = {
     file = {
       ".ssh/kill-ssh-control-masters.sh".source = ./kill-ssh-control-masters.sh;
@@ -18,7 +13,7 @@ in
 
     packages = with pkgs; [
       # VPN
-      unstablePkgs.openconnect-sso
+      openconnect-sso
 
       # Webex
       (callPackage ./webex-linux-nix {})
