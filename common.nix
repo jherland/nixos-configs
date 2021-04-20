@@ -18,6 +18,10 @@ in
   nixpkgs.config.allowUnfree = true;
 
   home = {
+    file = {
+      ".pypirc".source = ./pypirc;
+    };
+
     language.base = "C.UTF-8";
 
     packages = with pkgs; [
