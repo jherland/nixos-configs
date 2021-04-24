@@ -61,7 +61,10 @@ in
 
     bat.enable = true;
 
-    direnv.enable = true;
+    direnv = {
+      enable = true;
+      enableNixDirenvIntegration = true;
+    };
 
     gh = {
         enable = true;
