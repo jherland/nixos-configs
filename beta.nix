@@ -75,6 +75,6 @@
       };
     };
 
-    ssh.enable = true;
+#    ssh.enable = true;
   };
 }
