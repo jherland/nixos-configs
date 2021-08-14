@@ -1,4 +1,0 @@
-[submodule "webex-linux-nix"]
-	path = webex-linux-nix
-	url = git@sqbu-github.cisco.com:mmyrseth/webex-linux-nix
-	branch = main
