@@ -114,6 +114,7 @@ in
             remote     = "yellow bold";
           };
         };
+        diff.colorMoved = "zebra";
         merge.conflictstyle = "diff3";
         pull.rebase = true;
         push.default = "tracking";
