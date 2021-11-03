@@ -25,6 +25,7 @@
     ark
     libreoffice
     okular
+    peek
     spectacle
     yubikey-manager-qt
 
