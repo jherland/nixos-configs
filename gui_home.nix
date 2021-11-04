@@ -1,7 +1,10 @@
 { pkgs, ...}:
 
 let
-  unstablePkgs = import <nixos-unstable> {};
+  unstable = import (builtins.fetchGit {
+    url = "https://github.com/NixOS/nixpkgs/";
+    ref = "nixos-unstable";
+  }) {};
 in
 {
   home.packages = with pkgs; [
@@ -11,7 +14,7 @@ in
     # Media production
     audacity
     gimp-with-plugins
-    unstablePkgs.musescore
+    unstable.musescore
     obs-studio
   ];
 
