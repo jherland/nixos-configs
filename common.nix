@@ -21,9 +21,8 @@ in
     file = {
       ".pypirc".source = ./pypirc;
     };
-
+    homeDirectory = "/home/${username}";
     language.base = "C.UTF-8";
-
     packages = with pkgs; [
       bash-completion
       curl
@@ -36,8 +35,8 @@ in
       shellcheck
       sshfs-fuse
     ];
-
-    stateVersion = "19.09";
+    stateVersion = "21.05";
+    username = "${username}";
   };
 
   programs = {
@@ -63,7 +62,7 @@ in
 
     direnv = {
       enable = true;
-      enableNixDirenvIntegration = true;
+      nix-direnv.enable = true;
     };
 
     gh = {
@@ -138,17 +137,17 @@ in
 
     htop = {
       enable = true;
-      cpuCountFromZero = true;
-      detailedCpuTime = true;
-      headerMargin = false;
-      hideUserlandThreads = true;
-      highlightBaseName = true;
-      shadowOtherUsers = true;
-      showProgramPath = false;
-      showThreadNames = true;
-      meters = {
-        left = [ "CPU" "Memory" "Swap" "Battery" "Blank" "Tasks" "LoadAverage" "Uptime" ];
-        right = ["AllCPUs2"];
+      settings = {
+        cpu_count_from_zero = true;
+        detailed_cpu_time = true;
+        header_margin = false;
+        hide_userland_threads = true;
+        highlight_base_name = true;
+        shadow_other_users = true;
+        show_program_path = false;
+        show_thread_names = true;
+        left_meters = [ "CPU" "Memory" "Swap" "Battery" "Blank" "Tasks" "LoadAverage" "Uptime" ];
+        right_meters = ["AllCPUs2"];
       };
     };
 
@@ -159,32 +158,49 @@ in
       settings = {
         # See https://starship.rs/config for available config directives
         add_newline = false;
-        username.show_always = true;
-        username.style_user = "bold green";
-        hostname.ssh_only = false;
-        hostname.style = "bold green";
-        directory.truncation_length = 10;
-        directory.style = "bold blue";
-        git_branch.symbol = " ";
-        git_branch.style = "bold yellow";
+        username = {
+          show_always = true;
+          style_user = "bold green";
+        };
+        hostname = {
+          ssh_only = false;
+          style = "bold green";
+        };
+        directory = {
+          truncation_length = 10;
+          style = "bold blue";
+        };
+        git_branch = {
+          symbol = " ";
+          style = "bold yellow";
+        };
         git_state.style = "bold yellow";
-        git_status.style = "bold yellow";
-        git_status.prefix = "";
-        git_status.suffix = " ";
-        python.symbol = "🐍";
-        python.style = "cyan";
-        nix_shell.use_name = true;
-        nix_shell.impure_msg = "✖";
-        nix_shell.pure_msg = "✔";
-        nix_shell.style = "cyan";
-        cmd_duration.prefix = "🕙";
-        cmd_duration.style = "bold black";
-        memory_usage.disabled = false;
-        memory_usage.show_swap = false;
-        memory_usage.threshold = 75;
-        memory_usage.symbol = "🐏";
-        memory_usage.style = "bold red";
-        character.use_symbol_for_status = true;
+        git_status = {
+          style = "bold yellow";
+        };
+        python = {
+          symbol = "🐍";
+          style = "cyan";
+        };
+        nix_shell = {
+          format = "[$symbol$state( \($name\))]($style)";
+          impure_msg = "✖";
+          pure_msg = "✔";
+          style = "cyan";
+          symbol = "❄️";
+        };
+        cmd_duration = {
+          format = " [🕙$duration]($style)";
+          style = "bold black";
+        };
+        memory_usage = {
+          disabled = false;
+          format = "[$symbol $ram( \| $swap)]($style) ";
+          style = "bold red";
+          symbol = "🐏";
+          threshold = 75;
+        };
+        character.error_symbol = "[✘](bold red)";
       };
     };
 
