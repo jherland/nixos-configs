@@ -75,6 +75,11 @@
       };
     };
 
+    barrier.client = {
+      enable = true;
+      server = "100.72.20.98";
+    };
+
 #    ssh.enable = true;
   };
 }
