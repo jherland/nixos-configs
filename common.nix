@@ -28,7 +28,6 @@ in
       curl
       file
       man-pages
-      nix-index
       posix_man_pages
       pwgen
       (python3.withPackages (ps: with ps; [ black flake8 pytest ]))
@@ -152,6 +151,8 @@ in
     };
 
     man.enable = true;
+
+    nix-index.enable = true;
 
     starship = {
       enable = true;
