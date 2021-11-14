@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -43,4 +43,31 @@
       };
     };
   };
+
+  # Set up Barrier server as a systemd --user service
+  systemd.user.services.barriers =
+    let
+      listen_ip = "100.72.20.98";
+      server_config = pkgs.writeText "barriers.conf" ''
+        section: screens
+          epsilon:
+          beta:
+        end
+        section: links
+          epsilon:
+            left = beta
+          beta:
+            right = epsilon
+        end
+      '';
+    in
+    {
+      Unit = {
+        Description = "Barrier Server daemon";
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
+      Install.WantedBy = [ "graphical-session.target" ];
+      Service.ExecStart = "${pkgs.barrier}/bin/barriers --enable-crypto --no-daemon --address ${listen_ip} --config ${server_config}";
+    };
 }
