@@ -27,6 +27,8 @@ in
       bash-completion
       curl
       file
+      jq
+      lsof
       man-pages
       posix_man_pages
       pwgen
