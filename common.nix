@@ -35,6 +35,7 @@ in
       (python3.withPackages (ps: with ps; [ black flake8 pytest ]))
       shellcheck
       sshfs-fuse
+      unzip
     ];
     stateVersion = "21.05";
     username = "${username}";
