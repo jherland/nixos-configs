@@ -7,6 +7,10 @@ let
     rev = "29d6b2257a6eeb43dc6b8b7c1576288825250a11";
     sha256 = "0wd57ryhsc90kvv0qbrd5l96v1ac4s18yzpc6bn3vppx76xfxj5z";
   }) {};
+  webex = import (builtins.fetchGit {
+    url = "git@sqbu-github.cisco.com:Nix/webex-linux-nix.git";
+    rev = "0894953fa568eacc8c6691826c51f05acacd0128";
+  }) {};
 in {
   nixpkgs.overlays = [
     (import "${builtins.fetchTarball https://github.com/vlaci/openconnect-sso/archive/master.tar.gz}/overlay.nix")
@@ -23,7 +27,8 @@ in {
       openconnect-sso
 
       # Webex
-      webexPkgs.webex
+#      webexPkgs.webex
+      webex
     ];
   };
 
