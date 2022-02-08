@@ -52,12 +52,16 @@
         section: screens
           epsilon:
           beta:
+          rpi4:
         end
         section: links
           epsilon:
             left = beta
           beta:
             right = epsilon
+            left = rpi4
+          rpi4:
+            right = beta
         end
       '';
     in
