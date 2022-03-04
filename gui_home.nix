@@ -16,6 +16,10 @@ in
     gimp-with-plugins
     unstable.musescore
     obs-studio
+
+    # Messaging
+    unstable.signal-desktop
+    unstable.discord
   ];
 
   programs.ssh.matchBlocks = {
