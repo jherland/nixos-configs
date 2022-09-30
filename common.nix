@@ -37,7 +37,7 @@ in
       sshfs-fuse
       unzip
     ];
-    stateVersion = "21.05";
+    stateVersion = "22.05";
     username = "${username}";
   };
 
@@ -69,7 +69,7 @@ in
 
     gh = {
         enable = true;
-        gitProtocol = "ssh";
+        settings.git_protocol = "ssh";
     };
 
     git = {
