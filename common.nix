@@ -74,6 +74,7 @@ in
 
     git = {
       enable = true;
+      lfs.enable = true;
       package = pkgs.gitAndTools.gitFull;
       userName = "${name}";
       userEmail = "${email}";
