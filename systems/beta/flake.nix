@@ -1,11 +1,13 @@
 {
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-  inputs.nixos-hardware.url = github:NixOS/nixos-hardware;
+  inputs = {
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+    nixos-hardware.url = github:NixOS/nixos-hardware;
+  };
 
-  outputs = { self, nixpkgs, ...}@attrs: {
-    nixosConfigurations.beta = nixpkgs.lib.nixosSystem {
+  outputs = inputs: {
+    nixosConfigurations.beta = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = attrs;
+      specialArgs = inputs;
       modules = [ ./configuration.nix ];
     };
   };

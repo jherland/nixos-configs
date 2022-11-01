@@ -1,13 +1,13 @@
 { config, pkgs, nixos-hardware, ... }:
 
 {
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   imports =
     [
       nixos-hardware.nixosModules.samsung-np900x3c
       ./hardware-configuration.nix # Include the results of the hardware scan.
     ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
