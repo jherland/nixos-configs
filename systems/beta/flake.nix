@@ -4,11 +4,16 @@
     nixos-hardware.url = github:NixOS/nixos-hardware;
   };
 
-  outputs = inputs: {
+  outputs = { self, ... }@inputs: {
     nixosConfigurations.beta = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = inputs;
-      modules = [ ./configuration.nix ];
+      modules = [
+        ./configuration.nix
+        ({pkgs, ...}: {
+          system.configurationRevision = inputs.nixpkgs.lib.mkIf (self ? rev) self.rev;
+        })
+      ];
     };
   };
 }
