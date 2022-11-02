@@ -1,7 +1,8 @@
-{ config, pkgs, nixos-hardware, ... }:
+{ config, pkgs, nixpkgs, nixos-hardware, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.registry.nixpkgs.flake = nixpkgs;
 
   imports =
     [
