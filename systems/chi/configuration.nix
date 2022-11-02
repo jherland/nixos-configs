@@ -2,16 +2,17 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgs, nixos-hardware, ... }:
 
 {
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.registry.nixpkgs.flake = nixpkgs;
+
   imports =
-    [ 
-      <nixos-hardware/lenovo/thinkpad/x1/9th-gen>
+    [
+      nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen
       ./hardware-configuration.nix # Include the results of the hardware scan.
     ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -141,7 +142,8 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  system.copySystemConfiguration = true;
+  # Does not work with flakes...
+  # system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
