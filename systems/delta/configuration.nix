@@ -62,6 +62,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
+  # Enable udev rules + solaar for configuring Logitech wireless peripherals.
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jherland = {
     isNormalUser = true;
