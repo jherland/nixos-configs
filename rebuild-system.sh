@@ -22,7 +22,8 @@ copy_symlink() {
     fi
 }
 
-nixos-rebuild --flake "./systems/${host}#${host}" build
+nixos-rebuild --flake ".#${host}" build
+
 copy_symlink "$new" "$old" || true
 copy_symlink ./result "$new"
 
@@ -37,4 +38,4 @@ else
     extra_args=" --target-host \"root@${host}\""
 fi
 echo "To deploy:"
-echo "    ${preamble}nixos-rebuild --flake \"./systems/${host}#${host}\"${extra_args} switch"
+echo "    ${preamble}nixos-rebuild --flake \"./#${host}\"${extra_args} switch"
