@@ -2,12 +2,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgs, nixos-hardware, ... }:
 
 {
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.registry.nixpkgs.flake = nixpkgs;
+
   imports =
     [
-      <nixos-hardware/framework/12th-gen-intel>
+      nixos-hardware.nixosModules.framework-12th-gen-intel
       ./hardware-configuration.nix # Include the results of the hardware scan.
     ];
 
@@ -16,6 +19,7 @@
   boot.loader.systemd-boot.consoleMode = "auto";
   boot.loader.systemd-boot.memtest86.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 1;
 
   networking.hostName = "delta"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -103,7 +107,7 @@
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
