@@ -92,6 +92,10 @@
     #media-session.enable = true;
   };
 
+  # Enable udev rules + solaar for configuring Logitech wireless peripherals.
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
