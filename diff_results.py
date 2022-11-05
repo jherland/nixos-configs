@@ -94,8 +94,12 @@ def main(*args):
     parser = argparse.ArgumentParser()
     parser.add_argument("old", type=Path)
     parser.add_argument("new", type=Path)
-    args, unknown = parser.parse_known_args(args)
-    return diff(args.old, args.new, extra_display_args=unknown)
+
+    args, extra = parser.parse_known_args(args)
+    if not extra:
+        extra = ["--color", "--word-diff-regex=\w+"]
+
+    return diff(args.old, args.new, extra_display_args=extra)
 
 
 if __name__ == "__main__":
