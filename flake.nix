@@ -39,5 +39,15 @@
           ./systems/delta/configuration.nix
         ];
     };
+
+    devShell.x86_64-linux =
+    let
+      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+    in pkgs.mkShell {
+      buildInputs = with pkgs; [
+        git
+        python311
+      ];
+    };
   };
 }
