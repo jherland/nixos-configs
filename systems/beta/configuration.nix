@@ -79,7 +79,7 @@
       enable = true;
       extraArguments = [ "-s" ];
       user = "berit";
-      program = "${pkgs.firefox}/bin/firefox --private-window https://ssf.no/logg-inn";
+      program = "${pkgs.firefox}/bin/firefox --new-window https://ssf.no/logg-inn";
   };
   systemd.services."cage-tty1" = {
     environment.XKB_DEFAULT_LAYOUT = "no";  # Norwegian keyboard layout
