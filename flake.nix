@@ -31,6 +31,14 @@
       };
     });
   in {
+    nixosConfigurations.beta = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs // {self = self; };
+        modules = [
+          (common-system-config "beta")
+          ./systems/beta/configuration.nix
+        ];
+    };
     nixosConfigurations.delta = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs // {self = self; };
