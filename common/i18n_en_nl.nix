@@ -18,4 +18,7 @@
     layout = "us";
     xkbOptions = "eurosign:e,caps:ctrl,terminate:ctrl_alt_bksp";
   };
+
+  # Time zone
+  time.timeZone = "Europe/Amsterdam";
 }
