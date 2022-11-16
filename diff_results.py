@@ -7,7 +7,7 @@ import subprocess
 import sys
 from typing import NamedTuple, Self, TextIO
 
-DIFF_CMD = ["git", "diff", "--no-index"]
+DIFF_CMD = ["git", "--no-pager", "diff", "--no-index"]
 
 
 class RawDiff(NamedTuple):
