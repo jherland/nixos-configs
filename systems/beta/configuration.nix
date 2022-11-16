@@ -1,9 +1,6 @@
 { config, pkgs, nixpkgs, nixos-hardware, ... }:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.registry.nixpkgs.flake = nixpkgs;
-
   imports =
     [
       nixos-hardware.nixosModules.samsung-np900x3c
@@ -13,14 +10,8 @@
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-  boot.loader.timeout = 1;
 
-  networking.hostName = "beta"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -38,9 +29,6 @@
     ENV{LIBINPUT_IGNORE_DEVICE}="1"
   '';
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
@@ -49,8 +37,8 @@
   users.users.jherland = {
     isNormalUser = true;
     extraGroups = [
-      "wheel" # enable ‘sudo’ for the user.
       "networkmanager"
+      "wheel"
     ];
   };
 
@@ -59,8 +47,6 @@
     extraGroups = [ "networkmanager" ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     bat
     firefox
@@ -86,19 +72,5 @@
     after = [ "network-online.target"];  # Wait until we're online
     serviceConfig.Restart = "always";  # Restart on close/crash
   };
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
-
 }
 
