@@ -15,30 +15,33 @@ class RawDiff(NamedTuple):
     mode_new: int
     sha1_old: str
     sha1_new: str
-    status: str
-    path_old: Path
+    status: str  # first letter of raw diff status code
+    paths: list[Path]
 
     def __str__(self):
         return (
             f"{self.__class__.__name__}({self.mode_old:o} -> {self.mode_new:o},"
             f" {self.sha1_old} -> {self.sha1_new}, {self.status},"
-            f" {self.path_old})"
+            f" {self.paths})"
         )
 
     @classmethod
     def parse_one(cls, line: str) -> Self:
         preamble, *paths = line.split("\t")
         mode_old, mode_new, sha1_old, sha1_new, status = preamble.split(" ")
-        assert mode_old.startswith(":")
-        assert status in {"M"}
-        assert len(paths) == 1
+        assert mode_old.startswith(":"), line
+        assert status[0] in {"M", "D", "A", "R"}, line
+        if status[0] in {"M", "D", "A"}:
+            assert len(paths) == 1, line
+        elif status[0] in {"R"}:
+            assert len(paths) == 2, line
         return cls(
             int(mode_old[1:], 8),
             int(mode_new, 8),
             sha1_old,
             sha1_new,
-            status,
-            Path(paths[0]),
+            status[0],
+            [Path(p) for p in paths],
         )
 
     @classmethod
@@ -50,7 +53,7 @@ class RawDiff(NamedTuple):
     @classmethod
     def run(cls, old: Path, new: Path) -> Iterator[Self]:
         proc = subprocess.run(
-            DIFF_CMD + ["--raw", old, new],
+            DIFF_CMD + ["--raw", "--find-renames", old, new],
             stdout=subprocess.PIPE,
             text=True,
         )
@@ -60,8 +63,26 @@ class RawDiff(NamedTuple):
 class DiffEntry:
     def __init__(self, old_base: Path, new_base: Path, raw: RawDiff):
         self.is_symlink = raw.mode_old == 0o120000 and raw.mode_new == 0o120000
-        self.path_old = raw.path_old
-        self.path_new = new_base / self.path_old.relative_to(old_base)
+        self.is_modification = raw.status in {"M", "R"}
+        if raw.status == "M":
+            assert raw.paths[0].is_relative_to(old_base)
+            self.path_old = raw.paths[0]
+            self.path_new = new_base / self.path_old.relative_to(old_base)
+        elif raw.status == "D":
+            assert raw.paths[0].is_relative_to(old_base)
+            self.path_old = raw.paths[0]
+            self.path_new = Path("/dev/null")
+        elif raw.status == "A":
+            assert raw.paths[0].is_relative_to(new_base)
+            self.path_old = Path("/dev/null")
+            self.path_new = raw.paths[0]
+        elif raw.status == "R":
+            assert raw.paths[0].is_relative_to(old_base)
+            assert raw.paths[1].is_relative_to(new_base)
+            self.path_old = raw.paths[0]
+            self.path_new = raw.paths[1]
+        else:
+            raise ValueError(raw.status)
 
     def __str__(self):
         return f"{self.__class__.__name__}({self.path_old} -> {self.path_new})"
@@ -79,7 +100,7 @@ class DiffEntry:
 
 def diff(old: Path, new: Path, extra_display_args: list[str]):
     for item in DiffEntry.run(old, new):
-        if item.is_symlink:
+        if item.is_symlink and item.is_modification:
             print(f"*** Recursing into {item.path_old} vs. {item.path_new}")
             diff(
                 item.path_old.readlink(),
