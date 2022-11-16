@@ -1,11 +1,14 @@
 { config, pkgs, nixpkgs, nixos-hardware, ... }:
 
 {
-  imports =
-    [
-      nixos-hardware.nixosModules.samsung-np900x3c
-      ./hardware-configuration.nix # Include the results of the hardware scan.
-    ];
+  imports = [
+    # Hardware-specific
+    nixos-hardware.nixosModules.samsung-np900x3c
+    ./hardware-configuration.nix
+
+    # Common subsets
+    ../../common/base.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;

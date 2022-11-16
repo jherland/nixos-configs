@@ -1,11 +1,14 @@
 { config, pkgs, nixpkgs, nixos-hardware, ... }:
 
 {
-  imports =
-    [
-      nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen
-      ./hardware-configuration.nix # Include the results of the hardware scan.
-    ];
+  imports = [
+    # Hardware-specific
+    nixos-hardware.nixosModules.lenovo-thinkpad-x1-9th-gen
+    ./hardware-configuration.nix
+
+    # Common subsets
+    ../../common/base.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

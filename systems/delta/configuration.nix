@@ -1,11 +1,15 @@
 { config, pkgs, nixpkgs, nixos-hardware, ... }:
 
 {
-  imports =
-    [
-      nixos-hardware.nixosModules.framework-12th-gen-intel
-      ./hardware-configuration.nix # Include the results of the hardware scan.
-    ];
+  imports = [
+    # Hardware-specific
+    nixos-hardware.nixosModules.framework-12th-gen-intel
+    ./hardware-configuration.nix
+
+    # Common subsets
+    ../../common/base.nix
+    ../../common/i18n_en_nl.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

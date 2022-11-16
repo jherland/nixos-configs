@@ -8,36 +8,20 @@
   {
     nixosConfigurations.beta = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = inputs // {
-	      hostname = "beta";
-	    };
-      modules = [
-	      ./common/base.nix
-        ./systems/beta/configuration.nix
-      ];
+      specialArgs = inputs // { hostname = "beta"; };
+      modules = [ ./systems/beta/configuration.nix ];
     };
 
     nixosConfigurations.chi = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = inputs // {
-        hostname = "chi";
-	    };
-      modules = [
-	      ./common/base.nix
-        ./systems/chi/configuration.nix
-      ];
+      specialArgs = inputs // { hostname = "chi"; };
+      modules = [ ./systems/chi/configuration.nix ];
     };
 
     nixosConfigurations.delta = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = inputs // {
-	      hostname = "delta";
-	    };
-      modules = [
-        ./common/base.nix
-        ./common/i18n_en_nl.nix
-        ./systems/delta/configuration.nix
-      ];
+      specialArgs = inputs // { hostname = "delta"; };
+      modules = [ ./systems/delta/configuration.nix ];
     };
 
     devShell.x86_64-linux =
