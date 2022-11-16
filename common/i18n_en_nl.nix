@@ -1,15 +1,19 @@
-{ ... }:
-{
+{ nixpkgs, ... }:
+let
+  lib = nixpkgs.lib;
+  langCode = "nl_NL";
+  langVars = [
+    "LC_ADDRESS"
+    "LC_IDENTIFICATION"
+    "LC_MONETARY"
+    "LC_PAPER"
+    "LC_TELEPHONE"
+  ];
+in {
   # Languages/formatting
   i18n = {
     defaultLocale = "C.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "nl_NL.UTF-8";
-      LC_IDENTIFICATION = "nl_NL.UTF-8";
-      LC_MONETARY = "nl_NL.UTF-8";
-      LC_PAPER = "nl_NL.UTF-8";
-      LC_TELEPHONE = "nl_NL.UTF-8";
-    };
+    extraLocaleSettings = lib.genAttrs langVars (var: langCode + ".UTF-8");
   };
 
   # Keyboard layout
