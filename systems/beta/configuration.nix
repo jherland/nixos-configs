@@ -8,6 +8,7 @@
 
     # Common subsets
     ../../common/base.nix
+    ../../common/user_jherland.nix
   ];
 
   # Use the GRUB 2 boot loader.
@@ -35,15 +36,6 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jherland = {
-    isNormalUser = true;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-  };
 
   users.users.berit = {
     isNormalUser = true;

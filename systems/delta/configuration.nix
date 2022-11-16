@@ -9,6 +9,7 @@
     # Common subsets
     ../../common/base.nix
     ../../common/i18n_en_nl.nix
+    ../../common/user_jherland.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -34,15 +35,6 @@
   # Enable udev rules + solaar for configuring Logitech wireless peripherals.
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jherland = {
-    isNormalUser = true;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-  };
 
   environment.systemPackages = with pkgs; [
     vim

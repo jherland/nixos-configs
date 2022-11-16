@@ -8,6 +8,7 @@
 
     # Common subsets
     ../../common/base.nix
+    ../../common/user_jherland.nix
   ];
 
   # Bootloader.
@@ -83,16 +84,6 @@
   # Enable udev rules + solaar for configuring Logitech wireless peripherals.
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jherland = {
-    isNormalUser = true;
-    description = "Johan Herland";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-  };
 
   environment.systemPackages = with pkgs; [
     vim
