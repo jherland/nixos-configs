@@ -35,6 +35,7 @@
 	};
         modules = [
 	  ./common/base.nix
+	  ./common/i18n_en_nl.nix
           ./systems/delta/configuration.nix
         ];
     };
