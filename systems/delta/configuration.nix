@@ -8,6 +8,7 @@
     # Common subsets
     ../../common/base.nix
     ../../common/i18n_en_nl.nix
+    ../../common/laptop.nix
     ../../common/user_jherland.nix
   ];
 
@@ -17,16 +18,10 @@
   boot.loader.systemd-boot.consoleMode = "auto";
   boot.loader.systemd-boot.memtest86.enable = true;
 
-  networking.networkmanager.enable = true;
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
@@ -39,10 +34,5 @@
     enable = true;
     enableSSHSupport = true;
   };
-
-  services.fwupd.enable = true;
-
-  services.tailscale.enable = true;
-  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 22 ]; # Allow Tailscale SSH
 }
 

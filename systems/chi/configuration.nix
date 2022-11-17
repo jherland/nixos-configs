@@ -8,6 +8,7 @@
     # Common subsets
     ../../common/base.nix
     ../../common/i18n_en_nl.nix
+    ../../common/laptop.nix
     ../../common/user_jherland.nix
   ];
 
@@ -26,8 +27,6 @@
   boot.initrd.luks.devices."luks-a05d550b-a0ed-482d-9a18-3fc608c355a4".device = "/dev/disk/by-uuid/a05d550b-a0ed-482d-9a18-3fc608c355a4";
   boot.initrd.luks.devices."luks-a05d550b-a0ed-482d-9a18-3fc608c355a4".keyFile = "/crypto_keyfile.bin";
 
-  networking.networkmanager.enable = true;
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -40,7 +39,7 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = false;  # override common/laptop.nix
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -64,6 +63,6 @@
     enableSSHSupport = true;
   };
 
-  services.fwupd.enable = true;
-  services.tailscale.enable = true;
+  # Disallow Tailscale SSH
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [];
 }
