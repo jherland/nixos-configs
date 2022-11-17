@@ -8,6 +8,7 @@
 
     # Common subsets
     ../../common/base.nix
+    ../../common/i18n_en_nl.nix
     ../../common/user_jherland.nix
   ];
 
@@ -28,38 +29,12 @@
 
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
-
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "en_US.utf8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "nl_NL.utf8";
-      LC_IDENTIFICATION = "nl_NL.utf8";
-      LC_MEASUREMENT = "C.utf8";
-      LC_MONETARY = "nl_NL.utf8";
-      LC_NAME = "nl_NL.utf8";
-      LC_NUMERIC = "nl_NL.utf8";
-      LC_PAPER = "nl_NL.utf8";
-      LC_TELEPHONE = "nl_NL.utf8";
-      LC_TIME = "C.utf8";
-    };
-  };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbOptions = "eurosign:e,caps:ctrl";
-    xkbVariant = "altgr-intl";
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
