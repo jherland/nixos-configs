@@ -11,6 +11,7 @@
     ../../common/i18n_en_nl.nix
     ../../common/laptop.nix
     ../../common/user_jherland.nix
+    ../../common/gui_jherland.nix
   ];
 
   # Bootloader.
@@ -27,13 +28,6 @@
   # Enable swap on luks
   boot.initrd.luks.devices."luks-a05d550b-a0ed-482d-9a18-3fc608c355a4".device = "/dev/disk/by-uuid/a05d550b-a0ed-482d-9a18-3fc608c355a4";
   boot.initrd.luks.devices."luks-a05d550b-a0ed-482d-9a18-3fc608c355a4".keyFile = "/crypto_keyfile.bin";
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -53,11 +47,6 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
-  };
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
   };
 
   # Disallow Tailscale SSH
