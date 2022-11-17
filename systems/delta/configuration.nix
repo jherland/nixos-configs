@@ -7,6 +7,7 @@
 
     # Common subsets
     ../../common/base.nix
+    ../../common/hw_logitech.nix
     ../../common/i18n_en_nl.nix
     ../../common/laptop.nix
     ../../common/user_jherland.nix
@@ -26,13 +27,8 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
-  # Enable udev rules + solaar for configuring Logitech wireless peripherals.
-  hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true;
-
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
 }
-

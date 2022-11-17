@@ -7,6 +7,7 @@
 
     # Common subsets
     ../../common/base.nix
+    ../../common/hw_logitech.nix
     ../../common/i18n_en_nl.nix
     ../../common/laptop.nix
     ../../common/user_jherland.nix
@@ -53,10 +54,6 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable udev rules + solaar for configuring Logitech wireless peripherals.
-  hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true;
 
   programs.gnupg.agent = {
     enable = true;
