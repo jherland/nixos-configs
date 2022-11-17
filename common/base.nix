@@ -1,6 +1,12 @@
-{ self, hostname, nixpkgs, ...}:
+{ self, hostname, nixpkgs, pkgs, ...}:
 {
   boot.loader.timeout = 1;
+
+  environment.systemPackages = with pkgs; [
+    htop
+    vim
+  ];
+
   networking.hostName = hostname;
 
   nix = {

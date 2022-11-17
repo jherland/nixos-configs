@@ -85,10 +85,6 @@
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
 
-  environment.systemPackages = with pkgs; [
-    vim
-  ];
-
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

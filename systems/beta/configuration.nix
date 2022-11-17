@@ -45,8 +45,6 @@
   environment.systemPackages = with pkgs; [
     bat
     firefox
-    htop
-    vim
     wget
   ];
 
