@@ -1,5 +1,4 @@
-{ config, pkgs, nixpkgs, nixos-hardware, ... }:
-
+{ pkgs, nixos-hardware, ... }:
 {
   imports = [
     # Hardware-specific
