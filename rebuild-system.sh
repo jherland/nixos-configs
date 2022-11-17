@@ -28,9 +28,11 @@ copy_symlink "$new" "$old" || true
 copy_symlink ./result "$new"
 
 if [ -h "$old" ]; then
-    echo "old result: $(readlink "$old")"
+    echo "Old result: $(readlink "$old")"
+    echo "New result: $(readlink "$new")"
+    echo "To view diff:"
+    echo "    ./diff_results.py \"$old\" \"$new\" | less -R"
 fi
-echo "new result: $(readlink "$new")"
 
 if [ "${host}" = "$(hostname)" ]; then
     preamble="sudo "
