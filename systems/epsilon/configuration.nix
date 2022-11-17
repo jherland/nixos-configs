@@ -1,19 +1,7 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
-
-let
-#  unstable = import (builtins.fetchGit {
-#    url = "https://github.com/NixOS/nixpkgs/";
-#    ref = "nixos-unstable";
-#  }) {};
-   unstable = import <nixos-unstable> {};
-in
 {
   imports = [
-    # Include the results of the hardware scan.
+    # Hardware-specific
     ./hardware-configuration.nix
   ];
 
@@ -137,7 +125,7 @@ in
 
   services.tailscale = {
     enable = true;
-    package = unstable.tailscale;
+#    package = unstable.tailscale;
   };
 
   # Enable the X11 windowing system.

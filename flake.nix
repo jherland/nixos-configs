@@ -24,6 +24,12 @@
       modules = [ ./systems/delta/configuration.nix ];
     };
 
+    nixosConfigurations.epsilon = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = inputs // { hostname = "epsilon"; };
+      modules = [ ./systems/epsilon/configuration.nix ];
+    };
+
     devShell.x86_64-linux =
     let
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
