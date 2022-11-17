@@ -1,23 +1,34 @@
 { self, hostname, nixpkgs, pkgs, ...}:
-{
-  boot.loader.timeout = 1;
+let
+  lib = nixpkgs.lib;
+in {
+  # Shorten the boot wait by default
+  boot.loader.timeout = lib.mkDefault 1;
 
+  # Some useful system utils to be installed everywhere
   environment.systemPackages = with pkgs; [
     htop
     vim
   ];
 
+  # Propagate our hostname into the generated system
   networking.hostName = hostname;
 
   nix = {
+    # Pin nixpkgs inside the generated system, to speed up installs
+    # (see https://www.tweag.io/blog/2020-07-31-nixos-flakes/ for rationale)
     registry.nixpkgs.flake = nixpkgs;
+
+    # Look to the future
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
-  nixpkgs.config.allowUnfree = true;
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = lib.mkDefault true;
 
   system = {
-    configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+    # Include the commit ID of this repo in `nixos-version --json`
+    configurationRevision = lib.mkIf (self ? rev) self.rev;
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
