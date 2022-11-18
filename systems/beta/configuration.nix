@@ -8,7 +8,6 @@
     # Common subsets
     ../../common/base.nix
     ../../common/laptop.nix
-    ../../common/user_jherland.nix
   ];
 
   # Use the GRUB 2 boot loader.
