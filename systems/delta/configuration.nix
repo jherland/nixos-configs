@@ -1,4 +1,4 @@
-{ nixos-hardware, ... }:
+{ nixos-hardware, pkgs, ... }:
 {
   imports = [
     # Hardware-specific
@@ -19,4 +19,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.consoleMode = "auto";
   boot.loader.systemd-boot.memtest86.enable = true;
+
+  # Make console font a little larger and more legible
+  console = {
+    font = "ter-v20n";
+    packages = with pkgs; [ terminus_font ];
+  };
 }
