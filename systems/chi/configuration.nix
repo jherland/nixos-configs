@@ -49,7 +49,4 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Disallow Tailscale SSH
-  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [];
 }
