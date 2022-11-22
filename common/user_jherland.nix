@@ -7,6 +7,5 @@
       "networkmanager"
       "wheel"
     ];
-    uid = 1000;
   };
 }
