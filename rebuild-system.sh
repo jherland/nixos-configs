@@ -31,7 +31,7 @@ if [ -h "$old" ]; then
     echo "Old result: $(readlink "$old")"
     echo "New result: $(readlink "$new")"
     echo "To view diff:"
-    echo "    ./diff_results.py \"$old\" \"$new\" | less -R"
+    echo "    ./diff_results.py \"$old\" \"$new\" | less -RX"
 fi
 
 if [ "${host}" = "$(hostname)" ]; then
