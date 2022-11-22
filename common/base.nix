@@ -15,6 +15,10 @@ in {
   networking.hostName = hostname;
 
   nix = {
+    # Run periodic garbage collection inside the generated system
+    gc.automatic = true;
+    gc.dates = "weekly";
+
     # Pin nixpkgs inside the generated system, to speed up installs
     # (see https://www.tweag.io/blog/2020-07-31-nixos-flakes/ for rationale)
     registry.nixpkgs.flake = nixpkgs;
