@@ -55,16 +55,16 @@
         section: screens
           epsilon:
           chi:
-#          delta:
+          delta:
         end
         section: links
           epsilon:
             left = chi
-#            right = delta
+            right = delta
           chi:
             right = epsilon
-#          delta:
-#            left = epsilon
+          delta:
+            left = epsilon
         end
       '';
     in

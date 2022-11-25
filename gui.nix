@@ -14,7 +14,7 @@
 
     # Misc.
     ark
-#    libreoffice
+    libreoffice-qt
     okular
     peek
     spectacle
