@@ -1,15 +1,6 @@
 { pkgs, ...}:
-
 {
   home.packages = with pkgs; [
-    # Browsers
-    (vivaldi.override {
-      proprietaryCodecs = true;
-      enableWidevine = true;
-    })
-    vivaldi-ffmpeg-codecs
-    vivaldi-widevine
-
     # IDEs
     kate  # kwrite
     vscode
@@ -43,6 +34,16 @@
   # manual.html.enable = true;
 
   programs = {
+    chromium = {
+      enable = true;
+      package = (pkgs.vivaldi.override {
+        # Enable DRM media playback
+        proprietaryCodecs = true;
+        enableWidevine = true;
+        # Make WebGL work when upgrading from v5.2 to v5.4
+        commandLineArgs = "--use-gl=desktop";
+      });
+    };
     firefox.enable = true;
   };
 
