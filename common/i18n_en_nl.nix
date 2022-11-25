@@ -16,7 +16,7 @@
   console.useXkbConfig = true;
   services.xserver = {
     layout = "us";
-    xkbOptions = "eurosign:e,caps:ctrl,terminate:ctrl_alt_bksp";
+    xkbOptions = "eurosign:e,caps:ctrl_modifier,terminate:ctrl_alt_bksp";
     xkbVariant = "altgr-intl";
   };
 
