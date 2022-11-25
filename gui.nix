@@ -23,7 +23,7 @@
 
     # Misc.
     ark
-    libreoffice
+#    libreoffice
     okular
     peek
     spectacle

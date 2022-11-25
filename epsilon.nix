@@ -1,11 +1,14 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = pkg: true;
+
   imports = [
     ./common.nix
     ./gui.nix
     ./gui_home.nix
-    ./gui_work.nix
+#    ./gui_work.nix
     ./vim.nix
   ];
 

@@ -1,11 +1,4 @@
 { pkgs, ...}:
-
-let
-  unstable = import (builtins.fetchGit {
-    url = "https://github.com/NixOS/nixpkgs/";
-    ref = "nixos-unstable";
-  }) {};
-in
 {
   home.packages = with pkgs; [
     # Media consumption
@@ -14,12 +7,12 @@ in
     # Media production
     audacity
     gimp-with-plugins
-    unstable.musescore
+    musescore
     obs-studio
 
     # Messaging
-    unstable.signal-desktop
-    unstable.discord
+    signal-desktop
+    discord
   ];
 
   programs.ssh.matchBlocks = {
