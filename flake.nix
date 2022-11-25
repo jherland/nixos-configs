@@ -2,10 +2,16 @@
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
     nixos-hardware.url = github:NixOS/nixos-hardware;
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
-  {
+  let
+    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+  in {
     nixosConfigurations.beta = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = inputs // { hostname = "beta"; };
@@ -30,10 +36,14 @@
       modules = [ ./systems/epsilon/configuration.nix ];
     };
 
-    devShell.x86_64-linux =
-    let
-      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-    in pkgs.mkShell {
+    homeConfigurations.jherland = inputs.home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [
+        ./epsilon.nix
+      ];
+    };
+
+    devShell.x86_64-linux = pkgs.mkShell {
       buildInputs = with pkgs; [
         git
         python311
