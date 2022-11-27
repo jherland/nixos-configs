@@ -36,11 +36,14 @@
       modules = [ ./systems/epsilon/configuration.nix ];
     };
 
-    homeConfigurations.jherland = inputs.home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.jherland@epsilon = inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [
-        ./epsilon.nix
-      ];
+      modules = [ ./epsilon.nix ];
+    };
+
+    homeConfigurations.jherland@chi = inputs.home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [ ./chi.nix ];
     };
 
     devShell.x86_64-linux = pkgs.mkShell {
