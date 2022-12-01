@@ -21,6 +21,13 @@ in {
 
     # Pin nixpkgs inside the generated system, to speed up installs
     # (see https://www.tweag.io/blog/2020-07-31-nixos-flakes/ for rationale)
+    # Both for old-style nix-shell, etc...
+    nixPath = [
+        "nixpkgs=${nixpkgs}"
+        "nixos-config=/etc/nixos/configuration.nix"
+        "/nix/var/nix/profiles/per-user/root/channels"
+    ];
+    # And for the flake commands
     registry.nixpkgs.flake = nixpkgs;
 
     # Look to the future
