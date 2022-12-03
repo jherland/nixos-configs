@@ -118,7 +118,11 @@ def main(*args):
 
     args, extra = parser.parse_known_args(args)
     if not extra:
-        extra = ["--color", "--word-diff-regex=\w+"]
+        extra = [
+            "--color",
+            "--word-diff-regex=\w+",
+            "--ignore-matching-lines=/nix/store/\w{32}-[a-zA-Z0-9-]+",
+        ]
 
     return diff(args.old, args.new, extra_display_args=extra)
 
