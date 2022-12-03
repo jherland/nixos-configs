@@ -55,7 +55,12 @@
       buildInputs = with pkgs; [
         git
         python311
+        python311Packages.venvShellHook
       ];
+      venvDir = "./.venv";
+      postShellHook = ''
+        unset SOURCE_DATE_EPOCH
+      '';
     };
   };
 }

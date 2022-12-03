@@ -1,1 +1,6 @@
+# Nix
 /result*
+
+# Python
+/__pycache__/
+/.venv/
