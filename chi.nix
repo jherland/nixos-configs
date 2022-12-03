@@ -1,6 +1,8 @@
 { ... }:
-
 {
+  nixpkgs.config.allowUnfree = true;  # DOES NOT WORK!
+  nixpkgs.config.allowUnfreePredicate = pkg: true;
+
   imports = [
     ./common.nix
     ./gui.nix

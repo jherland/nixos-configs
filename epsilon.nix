@@ -1,7 +1,6 @@
 { pkgs, ... }:
-
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;  # DOES NOT WORK!
   nixpkgs.config.allowUnfreePredicate = pkg: true;
 
   imports = [
