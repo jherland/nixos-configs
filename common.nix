@@ -7,7 +7,7 @@ let
   name = "Johan Herland";
   email = "johan@herland.net";
   username = "jherland";
-  hmdir = "~/code/home-manager";
+  hmdir = "~/code/nixos-configs";
 in
 {
   programs.home-manager = {
