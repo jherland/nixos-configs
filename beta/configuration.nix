@@ -6,8 +6,8 @@
     ./hardware-configuration.nix
 
     # Common subsets
-    ../../common/base.nix
-    ../../common/laptop.nix
+    ../common/base.nix
+    ../common/laptop.nix
   ];
 
   # Use the GRUB 2 boot loader.

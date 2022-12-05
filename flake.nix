@@ -12,43 +12,47 @@
   let
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
   in {
-    nixosConfigurations.beta = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = inputs // { hostname = "beta"; };
-      modules = [ ./systems/beta/configuration.nix ];
+    nixosConfigurations = {
+      beta = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs // { hostname = "beta"; };
+        modules = [ ./beta/configuration.nix ];
+      };
+
+      chi = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs // { hostname = "chi"; };
+        modules = [ ./chi/configuration.nix ];
+      };
+
+      delta = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs // { hostname = "delta"; };
+        modules = [ ./delta/configuration.nix ];
+      };
+
+      epsilon = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs // { hostname = "epsilon"; };
+        modules = [ ./epsilon/configuration.nix ];
+      };
     };
 
-    nixosConfigurations.chi = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = inputs // { hostname = "chi"; };
-      modules = [ ./systems/chi/configuration.nix ];
-    };
+    homeConfigurations = {
+      "jherland@chi" = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./chi/home.nix ];
+      };
 
-    nixosConfigurations.delta = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = inputs // { hostname = "delta"; };
-      modules = [ ./systems/delta/configuration.nix ];
-    };
+      "jherland@delta" = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./delta/home.nix ];
+      };
 
-    nixosConfigurations.epsilon = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = inputs // { hostname = "epsilon"; };
-      modules = [ ./systems/epsilon/configuration.nix ];
-    };
-
-    homeConfigurations."jherland@chi" = inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [ ./chi.nix ];
-    };
-
-    homeConfigurations."jherland@epsilon" = inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [ ./epsilon.nix ];
-    };
-
-    homeConfigurations."jherland@delta" = inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [ ./delta.nix ];
+      "jherland@epsilon" = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./epsilon/home.nix ];
+      };
     };
 
     devShell.x86_64-linux = pkgs.mkShell {

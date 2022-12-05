@@ -6,12 +6,12 @@
     ./hardware-configuration.nix
 
     # Common subsets
-    ../../common/base.nix
-    ../../common/hw_logitech.nix
-    ../../common/i18n_en_nl.nix
-    ../../common/laptop.nix  # ???
-    ../../common/user_jherland.nix
-    ../../common/gui_jherland.nix
+    ../common/base.nix
+    ../common/hw_logitech.nix
+    ../common/i18n_en_nl.nix
+    ../common/laptop.nix  # ???
+    ../common/user_jherland.nix
+    ../common/gui_jherland.nix
   ];
 
   # Use the systemd-boot EFI boot loader.

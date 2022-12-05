@@ -4,11 +4,10 @@
   nixpkgs.config.allowUnfreePredicate = pkg: true;
 
   imports = [
-    ./common.nix
-    ./gui.nix
-    ./gui_home.nix
-    ./gui_work.nix
-    ./vim.nix
+    ../common/home_base.nix
+    ../common/home_gui.nix
+    ../common/home_gui_personal.nix
+    ../common/home_vim.nix
   ];
 
 #     barrier.client = {

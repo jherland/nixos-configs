@@ -19,7 +19,7 @@ in
 
   home = {
     file = {
-      ".pypirc".source = ./pypirc;
+      ".pypirc".source = ../dotfiles/pypirc;
     };
     homeDirectory = "/home/${username}";
     language.base = "C.UTF-8";
@@ -47,7 +47,7 @@ in
       # enableAutojump = true;
       historyControl = ["ignoredups"];
       initExtra = ''
-        source ${hmdir}/bash/acd_func.sh
+        source ${hmdir}/dotfiles/bin/acd_func.sh
       '';
       shellAliases = {
           ls = "ls --color=auto";

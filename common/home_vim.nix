@@ -3,7 +3,7 @@
 {
   home = {
     file = {
-      ".SpaceVim.d".source = ./SpaceVim.d;
+      ".SpaceVim.d".source = ../dotfiles/SpaceVim.d;
       ".SpaceVim.d".onChange = "rm -rf ~/.cache/SpaceVim/conf";
     };
 
