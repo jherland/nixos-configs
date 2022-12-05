@@ -64,6 +64,8 @@
       venvDir = "./.venv";
       postShellHook = ''
         unset SOURCE_DATE_EPOCH
+        pip install --upgrade pip
+        pip install -r ./requirements.txt
       '';
     };
   };
