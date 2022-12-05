@@ -25,4 +25,7 @@
     font = "ter-v20n";
     packages = with pkgs; [ terminus_font ];
   };
+
+  # Enable fingerprint reader
+  services.fprintd.enable = true;
 }
