@@ -52,4 +52,11 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  # Enable hosting containers
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+  users.users.jherland.extraGroups = [ "podman" ];
 }
