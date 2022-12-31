@@ -27,5 +27,5 @@
   };
 
   # Enable fingerprint reader
-  services.fprintd.enable = true;
+  services.fprintd.enable = false;
 }
