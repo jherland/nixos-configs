@@ -31,7 +31,7 @@
   boot.initrd.luks.devices."luks-a05d550b-a0ed-482d-9a18-3fc608c355a4".keyFile = "/crypto_keyfile.bin";
 
   # Enable fingerprint reader
-  services.fprintd.enable = true;
+#  services.fprintd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
