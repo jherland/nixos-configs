@@ -83,6 +83,12 @@
           }
         ];
       };
+
+      theta = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = inputs // { hostname = "theta"; };
+        modules = [ ./theta/configuration.nix ];
+      };
     };
 
     devShells.x86_64-linux.default =
