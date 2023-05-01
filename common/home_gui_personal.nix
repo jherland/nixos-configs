@@ -6,7 +6,7 @@
 
     # Media production
     audacity
-#    gimp-with-plugins
+    gimp-with-plugins
     musescore
     obs-studio
 
