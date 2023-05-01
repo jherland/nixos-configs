@@ -40,8 +40,6 @@
         # Enable DRM media playback
         proprietaryCodecs = true;
         enableWidevine = true;
-        # Make WebGL work when upgrading from v5.2 to v5.4
-        commandLineArgs = "--use-gl=desktop";
       });
     };
     firefox.enable = true;
