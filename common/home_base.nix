@@ -1,6 +1,6 @@
 # See home-configuration.nix(5) for available options
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   # Personal info
@@ -12,7 +12,7 @@ in
 {
   programs.home-manager = {
     enable = true;
-    path = "${hmdir}";
+    path = lib.mkForce "${hmdir}";
   };
 
   nixpkgs.config.allowUnfree = true;
