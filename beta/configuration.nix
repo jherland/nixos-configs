@@ -43,6 +43,18 @@
     serviceConfig.Restart = "always";  # Restart on close/crash
   };
 
+  # Printing support
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplip ];
+    listenAddresses = [ "*:631" ];
+    allowFrom = [ "all" ];
+    defaultShared = true;
+  };
+
+  # Allow incoming traffic via tailscale only
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+
   # Extra system packages
   environment.systemPackages = with pkgs; [
     bat
