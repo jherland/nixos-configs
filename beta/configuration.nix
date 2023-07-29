@@ -39,6 +39,7 @@
   };
   systemd.services."cage-tty1" = {
     environment.XKB_DEFAULT_LAYOUT = "no";  # Norwegian keyboard layout
+    environment.XKB_DEFAULT_OPTIONS = "numpad:mac";  # Numpad always ON
     after = [ "network-online.target"];  # Wait until we're online
     serviceConfig.Restart = "always";  # Restart on close/crash
   };
