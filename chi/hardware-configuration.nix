@@ -13,6 +13,9 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  # Disable GPU power saving to try combat flicker/horizontal glitch
+  boot.kernelParams = [ "i915.enable_psr=0" ];
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/6e65f731-a7dc-4e30-9101-9d3539eac5dc";
       fsType = "ext4";
@@ -38,6 +41,4 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
 }

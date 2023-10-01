@@ -123,6 +123,7 @@ in
         push.default = "tracking";
         rebase.autosquash = true;
         rebase.autostash = true;
+        rebase.updateRefs = true;
         repack.writeBitmaps = true;
         # rerere.enabled = true;
         sendemail = {

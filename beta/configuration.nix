@@ -12,7 +12,6 @@
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda";
 
   # Disable touchpad
@@ -33,16 +32,29 @@
     extraGroups = [ "networkmanager" ];
   };
   services.cage = {
-      enable = true;
-      extraArguments = [ "-s" ];
-      user = "berit";
-      program = "${pkgs.firefox}/bin/firefox --new-window https://ssf.no/logg-inn";
+    enable = true;
+    extraArguments = [ "-s" ];
+    user = "berit";
+    program = "${pkgs.firefox}/bin/firefox --new-window https://ssf.no/logg-inn";
   };
   systemd.services."cage-tty1" = {
     environment.XKB_DEFAULT_LAYOUT = "no";  # Norwegian keyboard layout
+    environment.XKB_DEFAULT_OPTIONS = "numpad:mac";  # Numpad always ON
     after = [ "network-online.target"];  # Wait until we're online
     serviceConfig.Restart = "always";  # Restart on close/crash
   };
+
+  # Printing support
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplip ];
+    listenAddresses = [ "*:631" ];
+    allowFrom = [ "all" ];
+    defaultShared = true;
+  };
+
+  # Allow incoming traffic via tailscale only
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
   # Extra system packages
   environment.systemPackages = with pkgs; [
