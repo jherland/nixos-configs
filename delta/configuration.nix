@@ -26,6 +26,12 @@
     packages = with pkgs; [ terminus_font ];
   };
 
-  # Enable fingerprint reader
+  # Printing support
+  services.printing = {
+    enable = true;
+    cups-pdf.enable = true;
+  };
+
+  # Disable fingerprint reader
   services.fprintd.enable = false;
 }
