@@ -33,10 +33,14 @@ else
     copy_symlink ./result "$new"
 fi
 
+echo "Current system: $(readlink /run/current-system)"
 if [ -h "$old" ]; then
-    echo "Old result: $(readlink "$old")"
-    echo "New result: $(readlink "$new")"
-    echo "To view diff:"
+    echo "    Old result: $(readlink "$old")"
+fi
+echo "    New result: $(readlink "$new")"
+echo "To view diff:"
+echo "    ./diff_results.py /run/current-system \"$new\" | less -RX"
+if [ -h "$old" ]; then
     echo "    ./diff_results.py \"$old\" \"$new\" | less -RX"
 fi
 
