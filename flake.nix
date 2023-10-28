@@ -62,7 +62,16 @@
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.jherland = import ./epsilon/home.nix;
+            home-manager.users.jherland = {
+              imports = [
+                common/home_base.nix
+                common/home_gui.nix
+                common/home_gui_personal.nix
+                common/home_vim.nix
+              ];
+
+              programs.ssh.enable = true;
+            };
           }
         ];
       };
