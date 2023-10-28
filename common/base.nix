@@ -8,6 +8,8 @@ in {
     timeout = lib.mkDefault 1;
     # Remember to 'systemd-boot.enable = true' where applicable
     systemd-boot = {
+      # Limit the number of generations to keep
+      configurationLimit = 10;
       consoleMode = "auto";
       memtest86.enable = true;
     };
