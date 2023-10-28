@@ -61,23 +61,6 @@
       };
     };
 
-    homeConfigurations = {
-      "jherland@chi" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./chi/home.nix ];
-      };
-
-      "jherland@delta" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./delta/home.nix ];
-      };
-
-      "jherland@epsilon" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./epsilon/home.nix ];
-      };
-    };
-
     devShells.x86_64-linux.default = pkgs.mkShell {
       name = "nixos-configs";
       buildInputs = with pkgs; [
