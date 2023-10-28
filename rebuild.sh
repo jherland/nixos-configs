@@ -24,8 +24,14 @@ copy_symlink() {
 
 nixos-rebuild --flake ".#${host}" build
 
-copy_symlink "$new" "$old" || true
-copy_symlink ./result "$new"
+if [ -h "$new" -a "$(readlink $new)" = "$(readlink ./result)" ]; then
+    echo "***"
+    echo "*** No change since last build! Leaving symlinks as-is."
+    echo "***"
+else
+    copy_symlink "$new" "$old" || true
+    copy_symlink ./result "$new"
+fi
 
 if [ -h "$old" ]; then
     echo "Old result: $(readlink "$old")"
