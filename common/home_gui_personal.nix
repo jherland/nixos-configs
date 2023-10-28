@@ -15,16 +15,5 @@
     discord
   ];
 
-#  programs.ssh.matchBlocks = {
-#    phi = {
-#      hostname = "phi.herland";
-#      user = "johan";
-#    };
-#    sigma = {
-#      hostname = "sigma.herland";
-#      user = "root";
-#    };
-#  };
-
   services.dropbox.enable = true;
 }

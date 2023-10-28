@@ -29,10 +29,6 @@
   # home.packages and nix-env
   fonts.fontconfig.enable = true;
 
-  # Manual installed under /nix/store/*-html-manual/share/doc/home-manager/
-  # Accessed with home-manager-help command
-  # manual.html.enable = true;
-
   programs = {
     chromium = {
       enable = true;
@@ -50,12 +46,5 @@
       enable = true;
       enableSshSupport = true;
     };
-
-    # network-manager-applet.enable = true;
   };
-
-  # xsession = {
-      # enable = true;
-      # numlock.enable = true;
-  # };
 }
