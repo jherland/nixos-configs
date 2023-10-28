@@ -26,8 +26,11 @@ in {
 
   nix = {
     # Run periodic garbage collection inside the generated system
-    gc.automatic = true;
-    gc.dates = "weekly";
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
     settings.auto-optimise-store = true;
 
     # Pin nixpkgs inside the generated system, to speed up installs
