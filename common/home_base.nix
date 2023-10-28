@@ -12,7 +12,7 @@ in
 {
   programs.home-manager = {
     enable = true;
-    path = lib.mkForce "${hmdir}";
+#    path = lib.mkForce "${hmdir}";
   };
 
   nixpkgs.config.allowUnfree = true;
