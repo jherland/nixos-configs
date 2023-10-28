@@ -10,12 +10,13 @@ let
   hmdir = "~/code/nixos-configs";
 in
 {
-  programs.home-manager = {
-    enable = true;
-#    path = lib.mkForce "${hmdir}";
-  };
+  programs.home-manager.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+
+  imports = [
+    ./home_vim.nix
+  ];
 
   home = {
     file = {
