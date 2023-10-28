@@ -24,15 +24,17 @@
         modules = [
           ./chi/configuration.nix
           home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.jherland = {
-              imports = [
-                common/home_base.nix
-                common/home_gui.nix
-                common/home_gui_personal.nix
-                common/home_gui_work.nix
-              ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.jherland = {
+                imports = [
+                  common/home_base.nix
+                  common/home_gui.nix
+                  common/home_gui_personal.nix
+                  common/home_gui_work.nix
+                ];
+              };
             };
           }
         ];
@@ -44,14 +46,16 @@
         modules = [
           ./delta/configuration.nix
           home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.jherland = {
-              imports = [
-                common/home_base.nix
-                common/home_gui.nix
-                common/home_gui_personal.nix
-              ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.jherland = {
+                imports = [
+                  common/home_base.nix
+                  common/home_gui.nix
+                  common/home_gui_personal.nix
+                ];
+              };
             };
           }
         ];
@@ -63,16 +67,18 @@
         modules = [
           ./epsilon/configuration.nix
           home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.jherland = {
-              imports = [
-                common/home_base.nix
-                common/home_gui.nix
-                common/home_gui_personal.nix
-              ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.jherland = {
+                imports = [
+                  common/home_base.nix
+                  common/home_gui.nix
+                  common/home_gui_personal.nix
+                ];
 
-              programs.ssh.enable = true;
+                programs.ssh.enable = true;
+              };
             };
           }
         ];
