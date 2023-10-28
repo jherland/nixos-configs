@@ -2,8 +2,16 @@
 let
   lib = nixpkgs.lib;
 in {
-  # Shorten the boot wait by default
-  boot.loader.timeout = lib.mkDefault 1;
+  # Default boot loader options
+  boot.loader = {
+    # Shorten the boot wait by default
+    timeout = lib.mkDefault 1;
+    # Remember to 'systemd-boot.enable = true' where applicable
+    systemd-boot = {
+      consoleMode = "auto";
+      memtest86.enable = true;
+    };
+  };
 
   # Some useful system utils to be installed everywhere
   environment.systemPackages = with pkgs; [
