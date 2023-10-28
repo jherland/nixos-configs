@@ -55,7 +55,8 @@
       };
     };
 
-    devShell.x86_64-linux = pkgs.mkShell {
+    devShells.x86_64-linux.default = pkgs.mkShell {
+      name = "nixos-configs";
       buildInputs = with pkgs; [
         git
         python311
