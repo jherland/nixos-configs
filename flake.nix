@@ -1,4 +1,6 @@
 {
+  description = "jherland's NixOS Flake";
+
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
     nixos-hardware.url = github:NixOS/nixos-hardware;
@@ -8,30 +10,30 @@
     };
   };
 
-  outputs = inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
   let
-    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
   in {
     nixosConfigurations = {
-      beta = inputs.nixpkgs.lib.nixosSystem {
+      beta = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs // { hostname = "beta"; };
         modules = [ ./beta/configuration.nix ];
       };
 
-      chi = inputs.nixpkgs.lib.nixosSystem {
+      chi = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs // { hostname = "chi"; };
         modules = [ ./chi/configuration.nix ];
       };
 
-      delta = inputs.nixpkgs.lib.nixosSystem {
+      delta = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs // { hostname = "delta"; };
         modules = [ ./delta/configuration.nix ];
       };
 
-      epsilon = inputs.nixpkgs.lib.nixosSystem {
+      epsilon = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs // { hostname = "epsilon"; };
         modules = [ ./epsilon/configuration.nix ];
@@ -39,17 +41,17 @@
     };
 
     homeConfigurations = {
-      "jherland@chi" = inputs.home-manager.lib.homeManagerConfiguration {
+      "jherland@chi" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./chi/home.nix ];
       };
 
-      "jherland@delta" = inputs.home-manager.lib.homeManagerConfiguration {
+      "jherland@delta" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./delta/home.nix ];
       };
 
-      "jherland@epsilon" = inputs.home-manager.lib.homeManagerConfiguration {
+      "jherland@epsilon" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./epsilon/home.nix ];
       };
