@@ -10,10 +10,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
-  let
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
-  in {
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
       beta = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -82,19 +79,22 @@
       };
     };
 
-    devShells.x86_64-linux.default = pkgs.mkShell {
-      name = "nixos-configs";
-      buildInputs = with pkgs; [
-        git
-        python311
-        python311Packages.venvShellHook
-      ];
-      venvDir = "./.venv";
-      postShellHook = ''
-        unset SOURCE_DATE_EPOCH
-        pip install --upgrade pip
-        pip install -r ./requirements.txt
-      '';
+    devShells.x86_64-linux.default =
+      let
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      in pkgs.mkShell {
+        name = "nixos-configs";
+        buildInputs = with pkgs; [
+          git
+          python311
+          python311Packages.venvShellHook
+        ];
+        venvDir = "./.venv";
+        postShellHook = ''
+          unset SOURCE_DATE_EPOCH
+          pip install --upgrade pip
+          pip install -r ./requirements.txt
+        '';
+      };
     };
-  };
 }
