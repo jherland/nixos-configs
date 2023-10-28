@@ -47,3 +47,11 @@ else
 fi
 echo "To deploy:"
 echo "    ${preamble}nixos-rebuild --flake \"./#${host}\"${extra_args} switch"
+
+# Suggest making /etc/nixos a symlink to this dir, if not already
+here=$(readlink -e .)
+if [ "$(readlink -e /etc/nixos)" != "$here" ]; then
+    echo
+    echo "Suggestion: Make /etc/nixos a symlink to $here, to allow 'sudo nixos-rebuild switch'"
+    echo "  ( cd /etc && sudo mv nixos nixos.bak && sudo ln -s $here nixos )"
+fi
