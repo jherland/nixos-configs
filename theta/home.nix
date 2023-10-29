@@ -5,6 +5,20 @@ let
   email = "turid.herland@gmail.com";
   username = "turid";
   hmdir = "~/code/nixos-configs";
+  latex = (pkgs.texlive.combine {
+    inherit (pkgs.texlive) scheme-small
+      enumitem
+      environ
+      fontawesome5
+      ifmtarg
+      minted
+      smartdiagram
+      sourcesanspro
+      tcolorbox
+      xifthen
+      xstring
+    ;
+  });
 in
 {
   nixpkgs.config.allowUnfree = true;  # DOES NOT WORK!
@@ -46,6 +60,10 @@ in
       # Fonts
       font-awesome
       powerline-fonts
+
+      # Turid's stuff
+      sage
+      latex
     ];
     stateVersion = "22.05";
     username = "${username}";
