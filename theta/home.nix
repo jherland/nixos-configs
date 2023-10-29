@@ -1,33 +1,18 @@
+# See home-configuration.nix(5) for available options
+
 { config, pkgs, ... }:
+
 let
   # Personal info
   name = "Turid Herland";
   email = "turid.herland@gmail.com";
   username = "turid";
   hmdir = "~/code/nixos-configs";
-  latex = (pkgs.texlive.combine {
-    inherit (pkgs.texlive) scheme-small
-      enumitem
-      environ
-      fontawesome5
-      ifmtarg
-      minted
-      smartdiagram
-      sourcesanspro
-      tcolorbox
-      xifthen
-      xstring
-    ;
-  });
 in
 {
-  nixpkgs.config.allowUnfree = true;  # DOES NOT WORK!
-  nixpkgs.config.allowUnfreePredicate = pkg: true;
+  programs.home-manager.enable = true;
 
-  programs.home-manager = {
-    enable = true;
-    path = "${hmdir}";
-  };
+  nixpkgs.config.allowUnfree = true;
 
   home = {
     homeDirectory = "/home/${username}";
@@ -63,7 +48,21 @@ in
 
       # Turid's stuff
       sage
-      latex
+      # LaTeX:
+      (pkgs.texlive.combine {
+        inherit (pkgs.texlive) scheme-small
+          enumitem
+          environ
+          fontawesome5
+          ifmtarg
+          minted
+          smartdiagram
+          sourcesanspro
+          tcolorbox
+          xifthen
+          xstring
+        ;
+      })
     ];
     stateVersion = "22.05";
     username = "${username}";
@@ -91,12 +90,12 @@ in
     bat.enable = true;
 
     direnv = {
-      enable = false;  # true;
+      enable = false;
       nix-direnv.enable = true;
     };
 
     gh = {
-        enable = false;  # true;
+        enable = false;
         settings.git_protocol = "ssh";
     };
 
@@ -151,6 +150,7 @@ in
         push.default = "tracking";
         rebase.autosquash = true;
         rebase.autostash = true;
+        rebase.updateRefs = true;
         repack.writeBitmaps = true;
         # rerere.enabled = true;
         sendemail = {
@@ -267,18 +267,4 @@ in
     };
     firefox.enable = true;
   };
-
-  services = {
-    gpg-agent = {
-      enable = true;
-      enableSshSupport = true;
-    };
-
-    # network-manager-applet.enable = true;
-  };
-
-  # xsession = {
-      # enable = true;
-      # numlock.enable = true;
-  # };
 }
