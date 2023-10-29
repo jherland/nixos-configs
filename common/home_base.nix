@@ -1,6 +1,6 @@
 # See home-configuration.nix(5) for available options
 
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   # Personal info
