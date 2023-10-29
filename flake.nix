@@ -87,7 +87,16 @@
       theta = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs // { hostname = "theta"; };
-        modules = [ ./theta/configuration.nix ];
+        modules = [
+          ./theta/configuration.nix
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.turid = import ./theta/home.nix;
+            };
+          }
+        ];
       };
     };
 
