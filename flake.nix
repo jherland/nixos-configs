@@ -107,6 +107,7 @@
         name = "nixos-configs";
         buildInputs = with pkgs; [
           git
+          nvd
           python311
           python311Packages.venvShellHook
         ];

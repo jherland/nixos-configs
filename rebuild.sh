@@ -43,12 +43,14 @@ if [ "$has_old" = "1" ]; then
     echo "    Old result: $(readlink "$old")"
 fi
 echo "    New result: $(readlink "$new")"
-echo "To view diff:"
+echo "To view diffs:"
 if [ "$is_local" = "1" ]; then
     echo "    ./diff_results.py /run/current-system \"$new\" | less -RX"
+    echo "    nvd diff /run/current-system \"$new\""
 fi
 if [ "$has_old" = "1" ]; then
     echo "    ./diff_results.py \"$old\" \"$new\" | less -RX"
+    echo "    nvd diff \"$old\" \"$new\""
 fi
 
 if [ "$is_local" = "1" ]; then
