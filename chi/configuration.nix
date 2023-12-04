@@ -51,6 +51,12 @@
     #media-session.enable = true;
   };
 
+  # Enable bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   # Enable hosting containers
   virtualisation.podman = {
     enable = true;
