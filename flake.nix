@@ -84,6 +84,27 @@
         ];
       };
 
+      rpi3 = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = inputs // { hostname = "rpi3"; };
+        modules = [
+          ./rpi3/configuration.nix
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.jherland = {
+                imports = [
+                  common/home_base.nix
+                ];
+
+                programs.ssh.enable = true;
+              };
+            };
+          }
+        ];
+      };
+
       theta = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs // { hostname = "theta"; };
