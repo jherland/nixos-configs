@@ -31,6 +31,8 @@
   # Enable fingerprint reader
 #  services.fprintd.enable = true;
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
