@@ -23,6 +23,33 @@
   # F/W update daemon
   services.fwupd.enable = lib.mkDefault true;
 
+  services.blocky = {
+    enable = true;
+    settings = {
+      upstreams.groups.default = [
+        "https://one.one.one.one/dns-query" # Using Cloudflare's DNS over HTTPS server for resolving queries.
+      ];
+      # For initially solving DoH/DoT Requests when no system Resolver is available.
+      bootstrapDns = {
+        upstream = "https://one.one.one.one/dns-query";
+        ips = [ "1.1.1.1" "1.0.0.1" ];
+      };
+      # Enable Blocking of certain domains.
+      blocking = {
+        blackLists.ads = [
+          "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+        ];
+        # Configure what block categories are used
+        clientGroupsBlock.default = [ "ads" ];
+      };
+      caching = {
+        minTime = "5m";
+        maxTime = "30m";
+        prefetching = true;
+      };
+    };
+  };
+
   system.stateVersion = "24.05"; # Did you read the comment?
 }
 
