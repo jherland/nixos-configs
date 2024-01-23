@@ -105,11 +105,11 @@
         ];
       };
 
-      ha = nixpkgs.lib.nixosSystem {
+      sigma = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-        specialArgs = inputs // { hostname = "ha"; };
+        specialArgs = inputs // { hostname = "sigma"; };
         modules = [
-          ./ha/configuration.nix
+          ./sigma/configuration.nix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
