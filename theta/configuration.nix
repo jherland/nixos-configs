@@ -10,6 +10,7 @@
     ../common/hw_logitech.nix
     ../common/i18n_en_nl.nix
     ../common/laptop.nix
+    ../common/tailscale.nix
     ../common/user_turid.nix
     ../common/gui_turid.nix
   ];

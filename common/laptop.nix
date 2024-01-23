@@ -2,14 +2,8 @@
 let
   lib = nixpkgs.lib;
 in {
-  # Networking
-  networking = {
-    networkmanager.enable = lib.mkDefault true;
-
-    # Allow Tailscale SSH (enable with `tailscale up --ssh`)
-    firewall.interfaces.tailscale0.allowedTCPPorts = lib.mkDefault [ 22 ];
-  };
-  services.tailscale.enable = lib.mkDefault true;
+  # Networking via NetworkManager
+  networking.networkmanager.enable = lib.mkDefault true;
 
   # Sound via pulseaudio
   sound.enable = lib.mkDefault true;

@@ -8,6 +8,7 @@
     # Common subsets
     ../common/base.nix
     ../common/laptop.nix
+    ../common/tailscale.nix
   ];
 
   # Use the GRUB 2 boot loader.

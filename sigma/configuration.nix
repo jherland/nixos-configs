@@ -9,6 +9,7 @@
     # Common subsets
     ../common/base.nix
     ../common/i18n_en_nl.nix
+    ../common/tailscale.nix
     ../common/user_jherland.nix
   ];
 
@@ -16,10 +17,6 @@
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
   boot.loader.generic-extlinux-compatible.enable = true;
-
-  # Tailscale w/SSH (enable with `tailscale up --ssh`)
-  networking.firewall.interfaces.tailscale0.allowedTCPPorts = lib.mkDefault [ 22 ];
-  services.tailscale.enable = lib.mkDefault true;
 
   # F/W update daemon
   services.fwupd.enable = lib.mkDefault true;
