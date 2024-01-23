@@ -105,6 +105,27 @@
         ];
       };
 
+      ha = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = inputs // { hostname = "ha"; };
+        modules = [
+          ./ha/configuration.nix
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.jherland = {
+                imports = [
+                  common/home_base.nix
+                ];
+
+                programs.ssh.enable = true;
+              };
+            };
+          }
+        ];
+      };
+
       theta = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = inputs // { hostname = "theta"; };
