@@ -47,6 +47,25 @@
     allowedUDPPorts = [ 8080 ];
   };
 
+  # Kodi accesses media from zeta via NFS.
+  # Automount with disconnect after ~3h idle
+  fileSystems = let commonOpts = {
+    fsType = "nfs";
+    options = [
+      # Lazy mount, disconnect after ~3h idle
+      "noauto"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=10000"
+    ];
+  };
+  in
+  {
+    "/mnt/downloads" = commonOpts // { device = "zeta:/volume1/downloads"; };
+    "/mnt/music" = commonOpts // { device = "zeta:/volume1/music"; };
+    "/mnt/photo" = commonOpts // { device = "zeta:/volume1/photo"; };
+    "/mnt/video" = commonOpts // { device = "zeta:/volume1/video"; };
+  };
+
   environment.systemPackages = with pkgs; [
     libraspberrypi
     raspberrypi-eeprom
