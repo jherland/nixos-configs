@@ -18,8 +18,39 @@
   # Enables the generation of /boot/extlinux/extlinux.conf
   boot.loader.generic-extlinux-compatible.enable = true;
 
+  hardware = {
+    raspberry-pi."4" = {
+      apply-overlays-dtmerge.enable = true;
+      fkms-3d.enable = true;
+    };
+    deviceTree = {
+      enable = true;
+      # filter = "*rpi-4-*.dtb";
+    };
+  };
+  console.enable = false;
+
   # F/W update daemon
   services.fwupd.enable = lib.mkDefault true;
+
+  # Kodi via cage/wayland
+  users.extraUsers.kodi.isNormalUser = true;
+  services.cage = {
+    enable = true;
+    user = "kodi";
+    program = "${pkgs.kodi-wayland}/bin/kodi-standalone";
+  };
+
+  # Allow connecting to Kodi from tailnet
+  networking.firewall.interfaces.tailscale0 = {
+    allowedTCPPorts = [ 8080 ];
+    allowedUDPPorts = [ 8080 ];
+  };
+
+  environment.systemPackages = with pkgs; [
+    libraspberrypi
+    raspberrypi-eeprom
+  ];
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }
