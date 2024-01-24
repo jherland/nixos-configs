@@ -40,6 +40,11 @@
     user = "kodi";
     program = "${pkgs.kodi-wayland}/bin/kodi-standalone";
   };
+  systemd.services."cage-tty1" = {
+    environment.WLR_LIBINPUT_NO_DEVICES = "1";
+    requires = [ "network-online.target"];  # Wait until we're online
+    serviceConfig.Restart = "always";  # Restart on close/crash
+  };
 
   # Allow connecting to Kodi from tailnet
   networking.firewall.interfaces.tailscale0 = {
