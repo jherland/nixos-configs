@@ -33,4 +33,7 @@
 
   # Disable fingerprint reader
   services.fprintd.enable = false;
+
+  # Enable cross-building Raspberry Pi systems on this machine
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
