@@ -36,11 +36,25 @@
   # hardware.raspberry-pi."4".audio.enable = true;
   boot.kernelParams = [ "snd_bcm2835.enable_hdmi=1" ];
 
+  # HDMI CEC support
+  nixpkgs.overlays = [
+    (self: super: {
+      libcec = super.libcec.override { withLibraspberrypi = true; };
+    })
+  ];
+  services.udev.extraRules = ''
+    # allow access to raspi cec device for video group
+    SUBSYSTEM=="vchiq", GROUP="video", MODE="0660", TAG+="systemd", ENV{SYSTEMD_ALIAS}="/dev/vchiq"
+  '';
+
   # F/W update daemon
   services.fwupd.enable = lib.mkDefault true;
 
   # Kodi via cage/wayland
-  users.extraUsers.kodi.isNormalUser = true;
+  users.extraUsers.kodi = {
+    isNormalUser = true;
+    extraGroups = [ "video" ];
+  };
   services.cage = {
     enable = true;
     user = "kodi";
@@ -78,6 +92,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    libcec
     libraspberrypi
     raspberrypi-eeprom
   ];
